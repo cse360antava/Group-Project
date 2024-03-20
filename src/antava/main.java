@@ -1,33 +1,21 @@
 package antava;
 
-import java.awt.Label;
-
 import java.util.ArrayList;
-
 import java.util.HashMap;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
  
 public class main extends Application {
 
@@ -60,18 +48,18 @@ public class main extends Application {
         	public void handle(ActionEvent event) {
             	String usernameInput = usernameField.getText();
             	String passwordInput = passwordField.getText();
+            	// loop through the users to find matching username
             	boolean loginSuccess = false;
             	ArrayList<User> accountListLogin = new ArrayList<User>(userList.values());
             	for (int i = 0; i < accountListLogin.size(); i++) {
-            		System.out.println(accountListLogin.get(i).account.getUsername());
-            		System.out.println(usernameInput);
-            		if (accountListLogin.get(i).account.getUsername() == usernameInput) {
-            			System.out.println("hre");
+            		// once we find a match, attempt login
+            		if (accountListLogin.get(i).account.getUsername().equals(usernameInput)) {
             			loginSuccess = accountListLogin.get(i).account.login(usernameInput, passwordInput);
             			break;
             		}
             	}
             	if (loginSuccess) {
+            		// if the login is successful, go to the patient view
             		VBox patientView = new VBox();
                 	patientView.setAlignment(Pos.CENTER);
                 	patientView.getChildren().add(logo);
@@ -80,6 +68,7 @@ public class main extends Application {
                 	patientScene.setFill(Color.rgb(201, 241, 253));
                 	primaryStage.setScene(patientScene);
             	} else {
+            		// if unsuccessful, show an error message
             		VBox loginFailedView = new VBox();
                 	loginFailedView.setAlignment(Pos.CENTER);
                 	loginFailedView.getChildren().add(logo);
@@ -104,23 +93,22 @@ public class main extends Application {
     		public void handle(ActionEvent event) {
     			String createAccountPassword = passwordField.getText();
             	String createAccountUsername = usernameField.getText();
-            	// TODO: add the birthday stuff
-            	//int createAccountBirthDay = 0; //the birth DAY, ex. 2/1/2001's birth day is 1
-            	//int createAccountBirthMonth = 0;
-            	//int createAccountBirthYear = 0;
+            	// loop through existing users to make sure there isn't a duplicate username
             	boolean alreadyExistingUsername = false;
             	ArrayList<User> accountListRegister = new ArrayList<User>(userList.values());
             	for (int i = 0; i < accountListRegister.size(); i++) {
-            		if (accountListRegister.get(i).account.getUsername() == createAccountUsername) {
+            		if (accountListRegister.get(i).account.getUsername().equals(createAccountUsername)) {
             			alreadyExistingUsername = true;
             			//account with same username already created
             			break;
             		}
             	}
-            	if (!alreadyExistingUsername) { //if username is unique, create the account
+            	if (!alreadyExistingUsername) {
+            		// if username is unique, create the account
             		Patient newPatient = new Patient(new Account(createAccountUsername, createAccountPassword, "patient"));
         			userList.put(newPatient.account.getUID(), newPatient);
         			
+        			// show a success message
         			VBox createView = new VBox();
                 	createView.setAlignment(Pos.CENTER);
                 	createView.getChildren().add(logo);
@@ -136,6 +124,7 @@ public class main extends Application {
                 	createScene.setFill(Color.rgb(201, 241, 253));
                 	primaryStage.setScene(createScene);
             	} else {
+            		// display an error if there's a duplicate username
             		VBox createFailedView = new VBox();
                 	createFailedView.setAlignment(Pos.CENTER);
                 	createFailedView.getChildren().add(logo);

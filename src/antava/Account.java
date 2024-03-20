@@ -19,7 +19,7 @@ public class Account {
 		return accountType;
 	}
 	public boolean login(String username, String password) {
-		return (username == this.username && this.password == password);
+		return (username.equals(this.username) && password.equals(this.password));
 	}
 	public int getUID() {
 		return UID;
