@@ -7,6 +7,8 @@ public class PatientDataRepository {
 	private HashMap<String, Object> data;
 	
 	public PatientDataRepository() {
+		data = new HashMap<String, Object>();
+		
 		data.put("firstName", "Enter first name here");
 		data.put("middleName", "Enter middle name here");
 		data.put("lastName", "Enter last name here");
