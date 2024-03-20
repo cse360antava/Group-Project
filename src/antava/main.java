@@ -6,12 +6,16 @@ import java.util.HashMap;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -31,12 +35,14 @@ public class main extends Application {
     	
     	// LOGIN VIEW
     	VBox loginView = new VBox();
+    	loginView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	loginView.setAlignment(Pos.CENTER);
     	loginView.getChildren().add(logo);
     	
     	Scene loginScene = new Scene(loginView, 500, 750);
+    	//loginScene.setFill(Color.rgb(201, 241, 253));
     	loginScene.setFill(Color.rgb(201, 241, 253));
-    	
+
     	TextField usernameField = new TextField("User ID");
     	loginView.getChildren().add(usernameField);
     	TextField passwordField = new TextField("Password");
@@ -61,6 +67,7 @@ public class main extends Application {
             	if (loginSuccess) {
             		// if the login is successful, go to the patient view
             		VBox patientView = new VBox();
+            		patientView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
                 	patientView.setAlignment(Pos.CENTER);
                 	patientView.getChildren().add(logo);
                 	patientView.getChildren().add(new Text("Successful login. Patient view here."));
@@ -70,6 +77,7 @@ public class main extends Application {
             	} else {
             		// if unsuccessful, show an error message
             		VBox loginFailedView = new VBox();
+            		loginFailedView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
                 	loginFailedView.setAlignment(Pos.CENTER);
                 	loginFailedView.getChildren().add(logo);
                 	loginFailedView.getChildren().add(new Text("Incorrect username or password."));
@@ -110,6 +118,7 @@ public class main extends Application {
         			
         			// show a success message
         			VBox createView = new VBox();
+        			createView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
                 	createView.setAlignment(Pos.CENTER);
                 	createView.getChildren().add(logo);
                 	createView.getChildren().add(new Text("Successfully created."));
@@ -126,6 +135,7 @@ public class main extends Application {
             	} else {
             		// display an error if there's a duplicate username
             		VBox createFailedView = new VBox();
+            		createFailedView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
                 	createFailedView.setAlignment(Pos.CENTER);
                 	createFailedView.getChildren().add(logo);
                 	createFailedView.getChildren().add(new Text("An account already exists with that username."));
