@@ -1,4 +1,4 @@
-package avanta;
+package antava;
 
 public class Account {
 	private String username;

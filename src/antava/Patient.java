@@ -1,4 +1,4 @@
-package avanta;
+package antava;
 
 public class Patient extends User {
 	public PatientDataRepository patientData;

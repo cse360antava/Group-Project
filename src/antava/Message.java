@@ -1,4 +1,4 @@
-package avanta;
+package antava;
 
 public class Message {
 	//uses UID for sender and receiver
