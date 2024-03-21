@@ -42,24 +42,20 @@ public class LoginView {
             	String passwordInput = passwordField.getText();
             	// loop through the users to find matching username
             	boolean loginSuccess = false;
+            	User user = null;
             	ArrayList<User> accountListLogin = new ArrayList<User>(Main.userList.values());
             	for (int i = 0; i < accountListLogin.size(); i++) {
             		// once we find a match, attempt login
-            		if (accountListLogin.get(i).account.getUsername().equals(usernameInput)) {
+            		user = accountListLogin.get(i);
+            		if (user.account.getUsername().equals(usernameInput)) {
             			loginSuccess = accountListLogin.get(i).account.login(usernameInput, passwordInput);
             			break;
             		}
             	}
             	if (loginSuccess) {
-            		// if the login is successful, go to the patient view
-            		VBox patientView = new VBox();
-            		patientView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
-                	patientView.setAlignment(Pos.CENTER);
-                	patientView.getChildren().add(Main.logo);
-                	patientView.getChildren().add(new Text("Successful login. Patient view here."));
-                	Scene patientScene = new Scene(patientView, 500, 750);
-                	patientScene.setFill(Color.rgb(201, 241, 253));
-                	Main.setScene(patientScene);
+            		// if the login is successful, go to the relevant view
+            		// TODO: check type of user
+                	Main.setScene(PatientView.getScene((Patient)user));
             	} else {
             		// if unsuccessful, show an error message
             		Main.setScene(MessageView.getScene("Incorrect username or password.", loginScene));
