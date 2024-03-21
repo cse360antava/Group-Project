@@ -21,17 +21,22 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
  
-public class main extends Application {
+public class Main extends Application {
 
 	public static boolean loggedIn = false;
 	public static HashMap<Integer, User> userList = new HashMap<Integer, User>(); //UID to user hashmap
 	
+	public static Stage s; // singleton stage
+	
+	public static ImageView logo;
+	
+	// sets the stage, used for switching between views
+	public static void setStage(Scene scene) {
+		s.setScene(scene);
+	}
+	
     public void start(Stage primaryStage) {
-    	// TODO: This is a blatant hack and should be fixed later on
-    	// I couldn't get it to read the image locally,
-    	// so this fetches it from the GitHub organization's profile picture
-    	ImageView logo = new ImageView();
-    	logo.setImage(new Image("https://avatars.githubusercontent.com/u/163464474?s=400&u=863a0130fd7a0f9c4732e287690245896fae7e02&v=4"));
+    	s = primaryStage; // initialize the singleton
     	
     	// LOGIN VIEW
     	VBox loginView = new VBox();
@@ -163,6 +168,14 @@ public class main extends Application {
     
     public static void main(String[] args) {
     	launch(args);
+    	
+    	// the logo should be readily accessible to all the Views,
+    	// since all of them use it
+    	// TODO: This is a blatant hack and should be fixed later on
+    	// I couldn't get it to read the image locally,
+    	// so this fetches it from the GitHub organization's profile picture
+    	ImageView logo = new ImageView();
+    	logo.setImage(new Image("https://avatars.githubusercontent.com/u/163464474?s=400&u=863a0130fd7a0f9c4732e287690245896fae7e02&v=4"));
     }
     
     
