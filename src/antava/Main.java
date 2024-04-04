@@ -28,7 +28,7 @@ public class Main extends Application {
     	//TODO: Doctor view: on pressing the doctor view button, go to the doctor view
     	//TODO: Nurse view: on pressing the nurse view, go to the nurse view
     	
-        setScene(LoginView.getScene());
+        primaryStage.setScene(LoginView.getScene());
         primaryStage.show();
     }
     

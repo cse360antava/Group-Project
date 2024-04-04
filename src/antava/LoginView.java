@@ -54,8 +54,14 @@ public class LoginView {
             	}
             	if (loginSuccess) {
             		// if the login is successful, go to the relevant view
-            		// TODO: check type of user
-                	Main.setScene(PatientView.getScene((Patient)user));
+            		switch (user.account.getAccountType()) {
+            		case "patient":
+            			Main.setScene(PatientView.getScene((Patient)user));
+            			break;
+            		case "doctor":
+            			Main.setScene(DoctorView.getScene((Doctor)user));
+            		}
+                	
             	} else {
             		// if unsuccessful, show an error message
             		Main.setScene(MessageView.getScene("Incorrect username or password.", loginScene));
