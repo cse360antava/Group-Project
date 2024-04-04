@@ -60,6 +60,12 @@ public class LoginView {
             			break;
             		case "doctor":
             			Main.setScene(DoctorView.getScene((Doctor)user));
+            			break;
+            		case "nurse":
+            			// currently no specific Nurse subclass of User
+            			// this should be fine, but we may need to change this
+            			Main.setScene(NurseView.getScene(user));
+            			break;
             		}
                 	
             	} else {
