@@ -1,5 +1,6 @@
 package antava;
 
+
 public class Doctor extends User {
 	public PatientDataRepository currentPatient;
 	

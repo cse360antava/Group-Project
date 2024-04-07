@@ -9,12 +9,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public class LoginView {
 	
@@ -23,17 +24,26 @@ public class LoginView {
     	VBox loginView = new VBox();
     	loginView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	loginView.setAlignment(Pos.CENTER);
-    	loginView.getChildren().add(Main.logo);
-    	
+    	    	
     	Scene loginScene = new Scene(loginView, 500, 750);
-    	//loginScene.setFill(Color.rgb(201, 241, 253));
     	loginScene.setFill(Color.rgb(201, 241, 253));
-
+    	ImageView newLogo = new ImageView(Main.logo.getImage());
+    	Main.ImageDim(newLogo, loginScene, 0.8);
+    	loginView.getChildren().add(newLogo);
+    	
     	TextField usernameField = new TextField("User ID");
     	loginView.getChildren().add(usernameField);
     	TextField passwordField = new TextField("Password");
     	loginView.getChildren().add(passwordField);
     	
+    	 // Add default nurse account
+        Nurse defaultNurse = new Nurse(new Account("nurse", "nurse321", "nurse"));
+        Main.userList.put(defaultNurse.getAccount().getUID(), defaultNurse);
+
+        // Add default doctor account
+        Doctor defaultDoctor = new Doctor(new Account("doctor", "doctor321", "doctor"));
+        Main.userList.put(defaultDoctor.getAccount().getUID(), defaultDoctor);
+        
     	Button loginButton = new Button("Login");
     	loginView.getChildren().add(loginButton);
     	loginButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -54,8 +64,17 @@ public class LoginView {
             	}
             	if (loginSuccess) {
             		// if the login is successful, go to the relevant view
-            		// TODO: check type of user
-                	Main.setScene(PatientView.getScene((Patient)user));
+            		switch (user.account.getAccountType()) {
+            		case "patient":
+            			Main.setScene(PatientView.getScene((Patient)user));
+            			break;
+            		case "doctor":
+            			Main.setScene(DoctorView.getScene((Doctor)user));
+            			break;
+            		case "nurse":
+            			Main.setScene(NurseView.getScene((Nurse)user));
+            			break;
+            		}
             	} else {
             		// if unsuccessful, show an error message
             		Main.setScene(MessageView.getScene("Incorrect username or password.", loginScene));
