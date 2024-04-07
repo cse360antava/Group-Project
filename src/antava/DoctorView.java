@@ -9,6 +9,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class DoctorView {
@@ -21,8 +23,12 @@ public class DoctorView {
     	Scene doctorScene = new Scene(doctorView, 500, 750);
     	doctorScene.setFill(Color.rgb(201, 241, 253));
     	ImageView newLogo = new ImageView(Main.logo.getImage());
-        Main.ImageDim(newLogo, doctorView.getScene(), 0.4);
-        doctorView.getChildren().add(newLogo);
+        Main.ImageDim(newLogo, doctorView.getScene(), 0.2);
+        Text title = new Text("ANTAVA");
+    	title.setFont(Font.font("Merriweather", FontWeight.BOLD, 20));
+    	title.setStyle("-fx-fill: rgba(170, 103, 29, 0.8);");
+    	doctorView.getChildren().add(newLogo);
+    	doctorView.getChildren().add(title);
         doctorView.getChildren().add(new Text("Successful login. Doctor view here."));
     	
     	return doctorScene;

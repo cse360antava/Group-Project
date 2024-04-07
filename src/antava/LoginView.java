@@ -15,6 +15,9 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 public class LoginView {
 	
@@ -23,12 +26,17 @@ public class LoginView {
     	VBox loginView = new VBox();
     	loginView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	loginView.setAlignment(Pos.CENTER);
-    	    	
+    	
     	Scene loginScene = new Scene(loginView, 500, 750);
     	loginScene.setFill(Color.rgb(201, 241, 253));
     	ImageView newLogo = new ImageView(Main.logo.getImage());
-    	Main.ImageDim(newLogo, loginScene, 0.4);
+    	Main.ImageDim(newLogo, loginScene, 0.6);
+    	Text title = new Text("ANTAVA");
+    	title.setFont(Font.font("Merriweather", FontWeight.BOLD, 28));
+    	title.setStyle("-fx-fill: rgba(170, 103, 29, 0.8);");
     	loginView.getChildren().add(newLogo);
+    	loginView.getChildren().add(title);
+    	
     	
     	TextField usernameField = new TextField("User ID");
     	loginView.getChildren().add(usernameField);

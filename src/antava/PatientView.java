@@ -9,6 +9,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class PatientView {
@@ -23,8 +25,14 @@ public class PatientView {
     	patientScene.setFill(Color.rgb(201, 241, 253));
     	
     	ImageView newLogo = new ImageView(Main.logo.getImage());
-        Main.ImageDim(newLogo, patientView.getScene(), 0.4);
-        patientView.getChildren().add(newLogo);
+        Main.ImageDim(newLogo, patientView.getScene(), 0.2);
+        
+        Text title = new Text("ANTAVA");
+    	title.setFont(Font.font("Merriweather", FontWeight.BOLD, 20));
+    	title.setStyle("-fx-fill: rgba(170, 103, 29, 0.8);");
+    	patientView.getChildren().add(newLogo);
+    	patientView.getChildren().add(title);
+    	
         patientView.getChildren().add(new Text("Successful login. Patient view here."));
     	
     	return patientScene;
