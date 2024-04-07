@@ -32,14 +32,6 @@ public class Main extends Application {
         primaryStage.show();
     }
     
-    public static void ImageDim(ImageView imageView, Scene scene, double ratio) {
-        double screenWidth = scene.getWidth();
-        double aspectRatio = imageView.getImage().getWidth() / imageView.getImage().getHeight();
-        double targetWidth = screenWidth * ratio;
-        double targetHeight = targetWidth / aspectRatio;
-        imageView.setFitWidth(targetWidth);
-        imageView.setFitHeight(targetHeight);
-    }
     public static void main(String[] args) {
     	launch(args);
     	

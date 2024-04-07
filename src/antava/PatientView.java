@@ -25,7 +25,8 @@ public class PatientView {
     	patientScene.setFill(Color.rgb(201, 241, 253));
     	
     	ImageView newLogo = new ImageView(Main.logo.getImage());
-        Main.ImageDim(newLogo, patientView.getScene(), 0.2);
+    	newLogo.setFitWidth(250); 
+    	newLogo.setFitHeight(250);
         
         Text title = new Text("ANTAVA");
     	title.setFont(Font.font("Merriweather", FontWeight.BOLD, 20));

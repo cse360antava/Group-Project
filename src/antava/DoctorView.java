@@ -22,8 +22,11 @@ public class DoctorView {
 		doctorView.setAlignment(Pos.CENTER);
     	Scene doctorScene = new Scene(doctorView, 500, 750);
     	doctorScene.setFill(Color.rgb(201, 241, 253));
+    	
     	ImageView newLogo = new ImageView(Main.logo.getImage());
-        Main.ImageDim(newLogo, doctorView.getScene(), 0.2);
+    	newLogo.setFitWidth(250); 
+    	newLogo.setFitHeight(250);
+    	
         Text title = new Text("ANTAVA");
     	title.setFont(Font.font("Merriweather", FontWeight.BOLD, 20));
     	title.setStyle("-fx-fill: rgba(170, 103, 29, 0.8);");
