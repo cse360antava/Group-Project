@@ -4,12 +4,16 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -22,6 +26,7 @@ public class NurseView {
 	public static Scene getScene(Nurse nurse) {
 		
 		GridPane nurseView = new GridPane();
+		Scene nurseScene = new Scene(nurseView, 1000, 900);
         nurseView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
         nurseView.setAlignment(Pos.TOP_CENTER);
         nurseView.setPadding(new Insets(20));
@@ -29,49 +34,112 @@ public class NurseView {
         nurseView.setVgap(10);
         
         ColumnConstraints col1 = new ColumnConstraints();
-        col1.setPercentWidth(50);
+        col1.setPercentWidth(100);
         ColumnConstraints col2 = new ColumnConstraints();
-        col2.setPercentWidth(50);
+        col2.setPercentWidth(100);
         nurseView.getColumnConstraints().addAll(col1, col2);
         
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 10; i++) {
             RowConstraints row = new RowConstraints();
-            row.setPercentHeight(12.5);
+            row.setPercentHeight(25);
             nurseView.getRowConstraints().add(row);
         }
         
-        Text title = new Text("ANTAVA");
-        title.setFont(Font.font("Merriweather", FontWeight.BOLD, 20));
-        title.setFill(Color.rgb(170, 103, 29, 0.8));
-        nurseView.add(title, 0, 0, 2, 1);
-        
         
         ImageView newLogo = new ImageView(Main.logo.getImage());
-        Main.ImageDim(newLogo, nurseView.getScene(), 0.2);
-        nurseView.add(newLogo, 0, 1, 1, 1);
+        newLogo.setFitWidth(200); 
+    	newLogo.setFitHeight(200);
+        nurseView.add(newLogo, 0, 1, 2, 1);
+        GridPane.setHalignment(newLogo, javafx.geometry.HPos.CENTER);
         
-        Button logoutButton = new Button("Logout");
-        nurseView.add(logoutButton, 1, 1, 1, 1);
+        Button logoutButton = new Button("LOG OUT");
+        logoutButton.setStyle("-fx-font-size: 18; -fx-font-weight: bold;");
+        nurseView.add(logoutButton, 1, 0, 1, 1);
+        GridPane.setHalignment(logoutButton, javafx.geometry.HPos.RIGHT);
         
-        Text patientInfoTitle = new Text("Patient Information Section");
-        nurseView.add(patientInfoTitle, 0, 2, 1, 1);
+        VBox patientBox = new VBox(5);
+        VBox vitalsBox = new VBox(5);
+        VBox allergiesBox = new VBox(5);
+        VBox messagesBox = new VBox(5);
+        VBox healthConcernsBox = new VBox(5);
+        
+        Label patientLabel = new Label("Patient Information");
+        Label vitalsLabel = new Label("Vitals");
+        Label allergiesLabel = new Label("Allergies");
+        Label messagesLabel = new Label("Messages");
+        Label healthConcernsLabel = new Label("Health Concerns");
+        
+        patientLabel.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
+        vitalsLabel.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
+        allergiesLabel.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
+        messagesLabel.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
+        healthConcernsLabel.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
+        
+        TextField patientNameField = new TextField();
+        TextField DOBField = new TextField();
+        TextArea healthIssueArea = new TextArea();
+        TextArea immuneHistoryArea = new TextArea();
+        TextArea currentPrescriptionsArea = new TextArea();
+        TextField weightField = new TextField();
+        TextField heightField = new TextField();
+        TextField temperatureField = new TextField();
+        TextField bloodPressureField = new TextField();
+        TextArea allergiesTextArea = new TextArea();
+        TextArea healthConcernsArea = new TextArea();
+        
+        patientNameField.setPromptText("Patient Name");
+        DOBField.setPromptText("Date Of Birth");
+        healthIssueArea.setPromptText("Previous Health Issues");
+        immuneHistoryArea.setPromptText("Immunization History");
+        currentPrescriptionsArea.setPromptText("Current Prescriptions");
+        weightField.setPromptText("Weight");
+        heightField.setPromptText("Height");
+        temperatureField.setPromptText("Body Temperature");
+        bloodPressureField.setPromptText("Blood Pressure");
+        allergiesTextArea.setPromptText("Allergies");
+        healthConcernsArea.setPromptText("Health Concerns");
+        
+        patientNameField.setPrefWidth(150);
+        patientNameField.setMaxWidth(150);
+        DOBField.setPrefWidth(150);
+        DOBField.setMaxWidth(150);
+        healthIssueArea.setPrefWidth(500);
+        healthIssueArea.setMaxWidth(500);
+        immuneHistoryArea.setPrefWidth(500);
+        immuneHistoryArea.setMaxWidth(500);
+        currentPrescriptionsArea.setPrefWidth(500);
+        currentPrescriptionsArea.setMaxWidth(500);
+        weightField.setPrefWidth(150);
+        weightField.setMaxWidth(150);
+        heightField.setPrefWidth(150);
+        heightField.setMaxWidth(150);
+        temperatureField.setPrefWidth(150);
+        temperatureField.setMaxWidth(150);
+        bloodPressureField.setPrefWidth(150);
+        bloodPressureField.setMaxWidth(150);
+        allergiesTextArea.setPrefWidth(500);
+        allergiesTextArea.setMaxWidth(500);
+        healthConcernsArea.setPrefWidth(500);
+        healthConcernsArea.setMaxWidth(500);
+        
+        patientBox.getChildren().addAll(patientLabel, patientNameField, DOBField, healthIssueArea, immuneHistoryArea, currentPrescriptionsArea);
+        vitalsBox.getChildren().addAll(vitalsLabel, weightField, heightField, temperatureField, bloodPressureField);
+        allergiesBox.getChildren().addAll(allergiesLabel, allergiesTextArea);
+        messagesBox.getChildren().add(messagesLabel);
+        healthConcernsBox.getChildren().addAll(healthConcernsLabel, healthConcernsArea);
+        
+        nurseView.add(patientBox, 0, 3);
+        nurseView.add(vitalsBox, 1, 3);
+        nurseView.add(allergiesBox, 0, 6);
+        nurseView.add(messagesBox, 1, 5);
+        nurseView.add(healthConcernsBox, 0, 8);
+        
+        Button confirmButton = new Button("CONFIRM");
+        confirmButton.setStyle("-fx-font-size: 18; -fx-font-weight: bold;");
+        nurseView.add(confirmButton, 1, 9, 1, 1);
+        GridPane.setHalignment(confirmButton, javafx.geometry.HPos.RIGHT);
 
-        Text vitalsTitle = new Text("Vitals Section");
-        nurseView.add(vitalsTitle, 1, 2, 1, 1);
-
-        Text allergiesTitle = new Text("Allergies Section");
-        nurseView.add(allergiesTitle, 0, 3, 1, 1);
-
-        Text messagesTitle = new Text("Messages Section");
-        nurseView.add(messagesTitle, 1, 3, 1, 1);
-
-        Text healthConcernsTitle = new Text("Health Concerns Section");
-        nurseView.add(healthConcernsTitle, 0, 4, 1, 1);
-
-        Button confirmButton = new Button("Confirm");
-        nurseView.add(confirmButton, 1, 7, 1, 1);
-
-        Scene nurseScene = new Scene(nurseView, 500, 750);
+       
         return nurseScene;
            
 	}
