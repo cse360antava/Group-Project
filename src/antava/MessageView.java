@@ -12,39 +12,44 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.image.ImageView; 
 
 public class MessageView {
-	
-	public static Scene getScene(String message, Scene back, String backMessage) {
-		VBox messageView = new VBox();
-		messageView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
-    	messageView.setAlignment(Pos.CENTER);
-    	messageView.getChildren().add(Main.logo);
-    	messageView.getChildren().add(new Text(message));
-    	if (back != null) {
-	    	Button messageBack = new Button(backMessage);
-	    	messageView.getChildren().add(messageBack);
-	    	messageBack.setOnAction(new EventHandler<ActionEvent>() {
-	        	public void handle(ActionEvent event) {
-	        		Main.setScene(back);
-	        	}
-	    	});
-    	}
-    	Scene messageScene = new Scene(messageView, 500, 750);
-    	messageScene.setFill(Color.rgb(201, 241, 253));
-    	return messageScene;
-	}
-	
-	public static Scene getScene(String message, Scene back) {
-		return getScene(message, back, "Back");
-	}
-	
-	public static Scene getScene(String message) {
-		return getScene(message, null);
-	}
-	
-	public static Scene getScene() {
-		return getScene("Error", null);
-	}
-
+    
+    public static Scene getScene(String message, Scene back, String backMessage) { 
+        VBox messageView = new VBox();
+        messageView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
+        messageView.setAlignment(Pos.CENTER);
+        
+        Scene messageScene = new Scene(messageView, 500, 750);
+        messageScene.setFill(Color.rgb(201, 241, 253));
+        
+        ImageView newLogo = new ImageView(Main.logo.getImage());
+        Main.ImageDim(newLogo, messageView.getScene(), 0.8); 
+        messageView.getChildren().add(newLogo);
+        
+        messageView.getChildren().add(new Text(message));
+        if (back != null) {
+            Button messageBack = new Button(backMessage);
+            messageView.getChildren().add(messageBack);
+            messageBack.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    Main.setScene(back);
+                }
+            });
+        }
+        return messageScene;
+    }
+    
+    public static Scene getScene(String message, Scene back) { 
+        return getScene(message, back, "Back");
+    }
+    
+    public static Scene getScene(String message) { 
+        return getScene(message, null);
+    }
+    
+    public static Scene getScene() { 
+        return getScene("Error", null);
+    }
 }
