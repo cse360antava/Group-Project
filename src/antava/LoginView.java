@@ -9,7 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -28,7 +27,7 @@ public class LoginView {
     	Scene loginScene = new Scene(loginView, 500, 750);
     	loginScene.setFill(Color.rgb(201, 241, 253));
     	ImageView newLogo = new ImageView(Main.logo.getImage());
-    	Main.ImageDim(newLogo, loginScene, 0.8);
+    	Main.ImageDim(newLogo, loginScene, 0.4);
     	loginView.getChildren().add(newLogo);
     	
     	TextField usernameField = new TextField("User ID");

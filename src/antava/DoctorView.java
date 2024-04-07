@@ -21,7 +21,7 @@ public class DoctorView {
     	Scene doctorScene = new Scene(doctorView, 500, 750);
     	doctorScene.setFill(Color.rgb(201, 241, 253));
     	ImageView newLogo = new ImageView(Main.logo.getImage());
-        Main.ImageDim(newLogo, doctorView.getScene(), 0.8);
+        Main.ImageDim(newLogo, doctorView.getScene(), 0.4);
         doctorView.getChildren().add(newLogo);
         doctorView.getChildren().add(new Text("Successful login. Doctor view here."));
     	

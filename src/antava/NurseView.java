@@ -21,7 +21,7 @@ public class NurseView {
     	Scene nurseScence = new Scene(nurseView, 500, 750);
     	nurseScence.setFill(Color.rgb(201, 241, 253));
     	ImageView newLogo = new ImageView(Main.logo.getImage());
-        Main.ImageDim(newLogo, nurseView.getScene(), 0.8);
+        Main.ImageDim(newLogo, nurseView.getScene(), 0.4);
         nurseView.getChildren().add(newLogo);
         nurseView.getChildren().add(new Text("Successful login. Nurse view here."));
     	

@@ -23,7 +23,7 @@ public class PatientView {
     	patientScene.setFill(Color.rgb(201, 241, 253));
     	
     	ImageView newLogo = new ImageView(Main.logo.getImage());
-        Main.ImageDim(newLogo, patientView.getScene(), 0.8);
+        Main.ImageDim(newLogo, patientView.getScene(), 0.4);
         patientView.getChildren().add(newLogo);
         patientView.getChildren().add(new Text("Successful login. Patient view here."));
     	

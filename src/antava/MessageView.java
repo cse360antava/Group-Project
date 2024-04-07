@@ -25,7 +25,7 @@ public class MessageView {
         messageScene.setFill(Color.rgb(201, 241, 253));
         
         ImageView newLogo = new ImageView(Main.logo.getImage());
-        Main.ImageDim(newLogo, messageView.getScene(), 0.8); 
+        Main.ImageDim(newLogo, messageView.getScene(), 0.4); 
         messageView.getChildren().add(newLogo);
         
         messageView.getChildren().add(new Text(message));
