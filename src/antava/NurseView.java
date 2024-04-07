@@ -47,15 +47,21 @@ public class NurseView {
         
         
         ImageView newLogo = new ImageView(Main.logo.getImage());
-        newLogo.setFitWidth(200); 
-    	newLogo.setFitHeight(200);
-        nurseView.add(newLogo, 0, 1, 2, 1);
+        newLogo.setFitWidth(250); 
+    	newLogo.setFitHeight(250);
         GridPane.setHalignment(newLogo, javafx.geometry.HPos.CENTER);
         
         Button logoutButton = new Button("LOG OUT");
+        Button replyButton = new Button("REPLY");
+        Button confirmButton = new Button("CONFIRM");
+        
         logoutButton.setStyle("-fx-font-size: 18; -fx-font-weight: bold;");
-        nurseView.add(logoutButton, 1, 0, 1, 1);
+        replyButton.setStyle("-fx-font-size: 18; -fx-font-weight: bold;");
+        confirmButton.setStyle("-fx-font-size: 18; -fx-font-weight: bold;");
         GridPane.setHalignment(logoutButton, javafx.geometry.HPos.RIGHT);
+        GridPane.setHalignment(confirmButton, javafx.geometry.HPos.RIGHT);
+        
+        logoutButton.setOnAction(event -> Main.setScene(LoginView.getScene()));
         
         VBox patientBox = new VBox(5);
         VBox vitalsBox = new VBox(5);
@@ -76,7 +82,7 @@ public class NurseView {
         healthConcernsLabel.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
         
         TextField patientNameField = new TextField();
-        TextField DOBField = new TextField();
+        TextField ageField = new TextField();
         TextArea healthIssueArea = new TextArea();
         TextArea immuneHistoryArea = new TextArea();
         TextArea currentPrescriptionsArea = new TextArea();
@@ -86,9 +92,10 @@ public class NurseView {
         TextField bloodPressureField = new TextField();
         TextArea allergiesTextArea = new TextArea();
         TextArea healthConcernsArea = new TextArea();
+        TextArea messagesArea = new TextArea();
         
         patientNameField.setPromptText("Patient Name");
-        DOBField.setPromptText("Date Of Birth");
+        ageField.setPromptText("Patient Age");
         healthIssueArea.setPromptText("Previous Health Issues");
         immuneHistoryArea.setPromptText("Immunization History");
         currentPrescriptionsArea.setPromptText("Current Prescriptions");
@@ -101,8 +108,8 @@ public class NurseView {
         
         patientNameField.setPrefWidth(150);
         patientNameField.setMaxWidth(150);
-        DOBField.setPrefWidth(150);
-        DOBField.setMaxWidth(150);
+        ageField.setPrefWidth(150);
+        ageField.setMaxWidth(150);
         healthIssueArea.setPrefWidth(500);
         healthIssueArea.setMaxWidth(500);
         immuneHistoryArea.setPrefWidth(500);
@@ -119,25 +126,31 @@ public class NurseView {
         bloodPressureField.setMaxWidth(150);
         allergiesTextArea.setPrefWidth(500);
         allergiesTextArea.setMaxWidth(500);
+        allergiesTextArea.setPrefHeight(100);
+        allergiesTextArea.setMaxHeight(100);
         healthConcernsArea.setPrefWidth(500);
         healthConcernsArea.setMaxWidth(500);
+        messagesArea.setPrefWidth(750);
+        messagesArea.setMaxWidth(750);
+        messagesArea.setPrefHeight(250);
+        messagesArea.setMaxHeight(250);
         
-        patientBox.getChildren().addAll(patientLabel, patientNameField, DOBField, healthIssueArea, immuneHistoryArea, currentPrescriptionsArea);
+        patientBox.getChildren().addAll(patientLabel, patientNameField, ageField, healthIssueArea, immuneHistoryArea, currentPrescriptionsArea);
         vitalsBox.getChildren().addAll(vitalsLabel, weightField, heightField, temperatureField, bloodPressureField);
         allergiesBox.getChildren().addAll(allergiesLabel, allergiesTextArea);
-        messagesBox.getChildren().add(messagesLabel);
+        messagesBox.getChildren().addAll(messagesLabel, messagesArea, replyButton);
         healthConcernsBox.getChildren().addAll(healthConcernsLabel, healthConcernsArea);
         
-        nurseView.add(patientBox, 0, 3);
+        nurseView.add(newLogo, 0, 1, 2, 1);
+        nurseView.add(logoutButton, 1, 0, 1, 1);
+        nurseView.add(patientBox, 0, 3, 1, 2);
         nurseView.add(vitalsBox, 1, 3);
-        nurseView.add(allergiesBox, 0, 6);
-        nurseView.add(messagesBox, 1, 5);
-        nurseView.add(healthConcernsBox, 0, 8);
-        
-        Button confirmButton = new Button("CONFIRM");
-        confirmButton.setStyle("-fx-font-size: 18; -fx-font-weight: bold;");
+        nurseView.add(allergiesBox, 0, 6, 1, 2);
+        nurseView.add(messagesBox, 1, 5, 1, 4);
+        nurseView.add(healthConcernsBox, 0, 8, 1, 2);
         nurseView.add(confirmButton, 1, 9, 1, 1);
-        GridPane.setHalignment(confirmButton, javafx.geometry.HPos.RIGHT);
+        
+        //nurseView.setGridLinesVisible(true);
 
        
         return nurseScene;
