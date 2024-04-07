@@ -27,10 +27,11 @@ public class LoginView {
     	loginView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	loginView.setAlignment(Pos.CENTER);
     	
-    	Scene loginScene = new Scene(loginView, 500, 750);
+    	Scene loginScene = new Scene(loginView, 1000, 900);
     	loginScene.setFill(Color.rgb(201, 241, 253));
     	ImageView newLogo = new ImageView(Main.logo.getImage());
-    	Main.ImageDim(newLogo, loginScene, 0.6);
+    	newLogo.setFitWidth(500); 
+    	newLogo.setFitHeight(500);
     	Text title = new Text("ANTAVA");
     	title.setFont(Font.font("Merriweather", FontWeight.BOLD, 28));
     	title.setStyle("-fx-fill: rgba(170, 103, 29, 0.8);");
@@ -38,9 +39,15 @@ public class LoginView {
     	loginView.getChildren().add(title);
     	
     	
-    	TextField usernameField = new TextField("User ID");
+    	TextField usernameField = new TextField();
+    	usernameField.setPromptText("UserName");
+    	usernameField.setPrefWidth(200);
+    	usernameField.setMaxWidth(200);
     	loginView.getChildren().add(usernameField);
-    	TextField passwordField = new TextField("Password");
+    	TextField passwordField = new TextField();
+    	passwordField.setPromptText("Password");
+    	passwordField.setPrefWidth(200);
+    	passwordField.setMaxWidth(200);
     	loginView.getChildren().add(passwordField);
     	
     	 // Add default nurse account
