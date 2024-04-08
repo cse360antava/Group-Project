@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 
 public class PatientView {
 	
@@ -21,7 +22,9 @@ public class PatientView {
 		patientView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
 		patientView.setAlignment(Pos.CENTER);
 		
-    	Scene patientScene = new Scene(patientView, 500, 750);
+		double screenWidth = Screen.getPrimary().getVisualBounds().getWidth() - 100;
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight() - 100;
+        Scene patientScene = new Scene(patientView, screenWidth, screenHeight);
     	patientScene.setFill(Color.rgb(201, 241, 253));
     	
     	ImageView newLogo = new ImageView(Main.logo.getImage());

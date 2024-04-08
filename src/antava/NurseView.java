@@ -20,13 +20,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 
 public class NurseView {
 	
 	public static Scene getScene(Nurse nurse) {
 		
 		GridPane nurseView = new GridPane();
-		Scene nurseScene = new Scene(nurseView, 1000, 900);
+		
+		double screenWidth = Screen.getPrimary().getVisualBounds().getWidth() - 100;
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight() - 100;
+        Scene nurseScene = new Scene(nurseView, screenWidth, screenHeight);
+        
         nurseView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
         nurseView.setAlignment(Pos.TOP_CENTER);
         nurseView.setPadding(new Insets(20));
@@ -47,17 +52,14 @@ public class NurseView {
         
         
         ImageView newLogo = new ImageView(Main.logo.getImage());
-        newLogo.setFitWidth(250); 
-    	newLogo.setFitHeight(250);
+        newLogo.setFitWidth(200); 
+    	newLogo.setFitHeight(200);
         GridPane.setHalignment(newLogo, javafx.geometry.HPos.CENTER);
         
-        Button logoutButton = new Button("LOG OUT");
-        Button replyButton = new Button("REPLY");
-        Button confirmButton = new Button("CONFIRM");
+        Button logoutButton = new Button("Log Out");
+        Button replyButton = new Button("Reply");
+        Button confirmButton = new Button("Confirm");
         
-        logoutButton.setStyle("-fx-font-size: 18; -fx-font-weight: bold;");
-        replyButton.setStyle("-fx-font-size: 18; -fx-font-weight: bold;");
-        confirmButton.setStyle("-fx-font-size: 18; -fx-font-weight: bold;");
         GridPane.setHalignment(logoutButton, javafx.geometry.HPos.RIGHT);
         GridPane.setHalignment(confirmButton, javafx.geometry.HPos.RIGHT);
         
@@ -152,7 +154,6 @@ public class NurseView {
         
         //nurseView.setGridLinesVisible(true);
 
-       
         return nurseScene;
            
 	}

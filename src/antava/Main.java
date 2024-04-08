@@ -27,6 +27,15 @@ public class Main extends Application {
     	
     	//TODO: Doctor view: on pressing the doctor view button, go to the doctor view
     	//TODO: Nurse view: on pressing the nurse view, go to the nurse view
+    	
+    	// Add default nurse account
+        Nurse defaultNurse = new Nurse(new Account("nurse", "nurse321", "nurse"));
+        Main.userList.put(defaultNurse.getAccount().getUID(), defaultNurse);
+
+        // Add default doctor account
+        Doctor defaultDoctor = new Doctor(new Account("doctor", "doctor321", "doctor"));
+        Main.userList.put(defaultDoctor.getAccount().getUID(), defaultDoctor);
+        
     	logo = new ImageView(new Image("file:src/antava/logo.jpg"));
         setScene(LoginView.getScene());
         primaryStage.show();

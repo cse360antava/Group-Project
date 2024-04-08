@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 
 public class LoginView {
 	
@@ -27,7 +28,10 @@ public class LoginView {
     	loginView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	loginView.setAlignment(Pos.CENTER);
     	
-    	Scene loginScene = new Scene(loginView, 1000, 900);
+    	double screenWidth = Screen.getPrimary().getVisualBounds().getWidth() - 100;
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight() - 100;
+    	
+    	Scene loginScene = new Scene(loginView, screenWidth, screenHeight);
     	loginScene.setFill(Color.rgb(201, 241, 253));
     	ImageView newLogo = new ImageView(Main.logo.getImage());
     	newLogo.setFitWidth(500); 
@@ -49,14 +53,6 @@ public class LoginView {
     	passwordField.setPrefWidth(200);
     	passwordField.setMaxWidth(200);
     	loginView.getChildren().add(passwordField);
-    	
-    	 // Add default nurse account
-        Nurse defaultNurse = new Nurse(new Account("nurse", "nurse321", "nurse"));
-        Main.userList.put(defaultNurse.getAccount().getUID(), defaultNurse);
-
-        // Add default doctor account
-        Doctor defaultDoctor = new Doctor(new Account("doctor", "doctor321", "doctor"));
-        Main.userList.put(defaultDoctor.getAccount().getUID(), defaultDoctor);
         
     	Button loginButton = new Button("Login");
     	loginView.getChildren().add(loginButton);

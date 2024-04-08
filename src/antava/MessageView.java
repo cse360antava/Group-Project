@@ -12,6 +12,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.scene.image.ImageView; 
 
 public class MessageView {
@@ -21,12 +22,15 @@ public class MessageView {
         messageView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
         messageView.setAlignment(Pos.CENTER);
         
-        Scene messageScene = new Scene(messageView, 500, 750);
+        double screenWidth = Screen.getPrimary().getVisualBounds().getWidth() - 100;
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight() - 100;
+        
+        Scene messageScene = new Scene(messageView, screenWidth, screenHeight);
         messageScene.setFill(Color.rgb(201, 241, 253));
         
         ImageView newLogo = new ImageView(Main.logo.getImage());
-        newLogo.setFitWidth(250); 
-    	newLogo.setFitHeight(250);
+        newLogo.setFitWidth(200); 
+    	newLogo.setFitHeight(200);
     	
         messageView.getChildren().add(newLogo);
         
@@ -40,6 +44,7 @@ public class MessageView {
                 }
             });
         }
+        
         return messageScene;
     }
     
