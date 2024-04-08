@@ -9,12 +9,16 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 
 public class LoginView {
 	
@@ -23,17 +27,33 @@ public class LoginView {
     	VBox loginView = new VBox();
     	loginView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	loginView.setAlignment(Pos.CENTER);
-    	loginView.getChildren().add(Main.logo);
     	
-    	Scene loginScene = new Scene(loginView, 500, 750);
-    	//loginScene.setFill(Color.rgb(201, 241, 253));
+    	double screenWidth = Screen.getPrimary().getVisualBounds().getWidth() - 100;
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight() - 100;
+    	
+    	Scene loginScene = new Scene(loginView, screenWidth, screenHeight);
     	loginScene.setFill(Color.rgb(201, 241, 253));
-
-    	TextField usernameField = new TextField("User ID");
-    	loginView.getChildren().add(usernameField);
-    	TextField passwordField = new TextField("Password");
-    	loginView.getChildren().add(passwordField);
+    	ImageView newLogo = new ImageView(Main.logo.getImage());
+    	newLogo.setFitWidth(500); 
+    	newLogo.setFitHeight(500);
+    	Text title = new Text("ANTAVA");
+    	title.setFont(Font.font("Merriweather", FontWeight.BOLD, 28));
+    	title.setStyle("-fx-fill: rgba(170, 103, 29, 0.8);");
+    	loginView.getChildren().add(newLogo);
+    	loginView.getChildren().add(title);
     	
+    	
+    	TextField usernameField = new TextField();
+    	usernameField.setPromptText("UserName");
+    	usernameField.setPrefWidth(200);
+    	usernameField.setMaxWidth(200);
+    	loginView.getChildren().add(usernameField);
+    	TextField passwordField = new TextField();
+    	passwordField.setPromptText("Password");
+    	passwordField.setPrefWidth(200);
+    	passwordField.setMaxWidth(200);
+    	loginView.getChildren().add(passwordField);
+        
     	Button loginButton = new Button("Login");
     	loginView.getChildren().add(loginButton);
     	loginButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -62,12 +82,9 @@ public class LoginView {
             			Main.setScene(DoctorView.getScene((Doctor)user));
             			break;
             		case "nurse":
-            			// currently no specific Nurse subclass of User
-            			// this should be fine, but we may need to change this
-            			Main.setScene(NurseView.getScene(user));
+            			Main.setScene(NurseView.getScene((Nurse)user));
             			break;
             		}
-                	
             	} else {
             		// if unsuccessful, show an error message
             		Main.setScene(MessageView.getScene("Incorrect username or password.", loginScene));

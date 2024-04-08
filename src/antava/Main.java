@@ -28,7 +28,16 @@ public class Main extends Application {
     	//TODO: Doctor view: on pressing the doctor view button, go to the doctor view
     	//TODO: Nurse view: on pressing the nurse view, go to the nurse view
     	
-        primaryStage.setScene(LoginView.getScene());
+    	// Add default nurse account
+        Nurse defaultNurse = new Nurse(new Account("nurse", "nurse321", "nurse"));
+        Main.userList.put(defaultNurse.getAccount().getUID(), defaultNurse);
+
+        // Add default doctor account
+        Doctor defaultDoctor = new Doctor(new Account("doctor", "doctor321", "doctor"));
+        Main.userList.put(defaultDoctor.getAccount().getUID(), defaultDoctor);
+        
+    	logo = new ImageView(new Image("file:src/antava/logo.jpg"));
+        setScene(LoginView.getScene());
         primaryStage.show();
     }
     
@@ -40,8 +49,7 @@ public class Main extends Application {
     	// TODO: This is a blatant hack and should be fixed later on
     	// I couldn't get it to read the image locally,
     	// so this fetches it from the GitHub organization's profile picture
-    	ImageView logo = new ImageView();
-    	logo.setImage(new Image("https://avatars.githubusercontent.com/u/163464474?s=400&u=863a0130fd7a0f9c4732e287690245896fae7e02&v=4"));
+    	//logo = new ImageView(new Image("https://avatars.githubusercontent.com/u/163464474?s=400&u=863a0130fd7a0f9c4732e287690245896fae7e02&v=4"));
     }
     
     
