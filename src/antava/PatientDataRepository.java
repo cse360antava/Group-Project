@@ -10,12 +10,11 @@ public class PatientDataRepository {
 		data = new HashMap<String, Object>();
 		
 		data.put("firstName", "Enter first name here");
-		data.put("middleName", "Enter middle name here");
 		data.put("lastName", "Enter last name here");
-		data.put("birthDay", 0);
-		data.put("birthMonth", 0);
-		data.put("birthYear", 0);
-		data.put("Age", 0);
+		data.put("birthDay", "Enter birth day");
+		data.put("birthMonth", "Enter birth month");
+		data.put("birthYear", "Enter birth year");
+		data.put("age", "Enter age");
 		data.put("phoneNumber", "0-000-000-0000");
 		data.put("email", "Enter email here");
 		data.put("insuranceCompany", "Enter insurance company here");
@@ -24,20 +23,16 @@ public class PatientDataRepository {
 		data.put("immunizationHistory", "Enter immunization history here");
 		data.put("currentPrescriptions", "Enter current prescriptions here");
 		data.put("visitHistory", new ArrayList<Visit>());
-		data.put("bodyTemperature", 0);
-		data.put("bloodPressure", 0);
-		data.put("weight", 0);
-		data.put("height", 0);
+		data.put("bodyTemperature", "Enter body temperature");
+		data.put("bloodPressure", "Enter blood pressure");
+		data.put("weight", "Enter weight");
+		data.put("height", "Emter height");
 		data.put("allergies", "Enter allergies here");
 		data.put("healthConcerns", "Enter any health concerns here");
 		data.put("physicalExamSummaryList", new ArrayList<String>());
 		data.put("prescriptions", "Enter any prescriptions here");
-		//unsure if I missed any fields, if so let me know or just add it -Chris
 	}
-	/*
-	 * Decided pretty arbitrarily to add boolean return type to these functions
-	 * so if you want to remove them for any reason go ahead -Chris
-	 * */
+	
 	public boolean addPatientData(String key, Object value) {
 		try {
 			data.put(key, value);
@@ -61,5 +56,9 @@ public class PatientDataRepository {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public HashMap<String, Object> getDataRepo() {
+		return this.data;
 	}
 }
