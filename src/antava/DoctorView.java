@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+
 public class DoctorView 
 {
 	public static Scene getScene(Doctor doctor)
@@ -244,42 +245,92 @@ public class DoctorView
 	        	        String psych = txtPsychiatric.getText();
 	        	        String final_ = txtFinal.getText();
 	        	        String summary = txtSummary.getText();
+	        	        
+	        	        //Create PatientDataRepo Obj and update patient information
+	        	        PatientDataRepository cp = new PatientDataRepository();
+	        	        cp.editPatientData("patientName", patientName);
+	        	        cp.editPatientData("patientAge", patientAge);
+	        	        cp.editPatientData("bodyTemperature", bodyTemp);
+	        	        cp.editPatientData("weight", weight);
+	        	        cp.editPatientData("height", height);
+	        	        cp.editPatientData("bloodPressure", bloodPressure);
+	        	        cp.editPatientData("previousHealthConcerns", healthIssues);
+	        	        cp.editPatientData("previousMedication", medication);
+	        	        cp.editPatientData("immunizationHistory", immunization);
+	        	        cp.editPatientData("HEENNT", HEENNT);
+	        	        cp.editPatientData("cardiovascular", cardio);
+	        	        cp.editPatientData("respiratory", respiratory);
+	        	        cp.editPatientData("gastrointestinal", gastro);
+	        	        cp.editPatientData("musculoskeletal", muscu);
+	        	        cp.editPatientData("neurological", neuro);
+	        	        cp.editPatientData("skin", skin);
+	        	        cp.editPatientData("psychiatric", psych);
+	        	        cp.editPatientData("finalAssessment", final_);
+	        	        cp.editPatientData("summary", summary);
+	        	        
 	        		}
         		});
         
-        //Create Patient Obj and update with information
-        //Patient currentPatient = doctor.getCurrentPatient();
+        //Order Prescription Button
+        btnOrder.setOnAction(new EventHandler<ActionEvent>()
+        		{
+	        		@Override
+	        		public void handle(ActionEvent event)
+	        		{
+	        			//Pull prescription information from the Order Prescription text fields
+	        			String prescriptionName = txtPrescriptionName.getText();
+	        			String dosage = txtDosage.getText();  	 		
+	        	        String duration = txtDuration.getText();				
+	        	        String notes = txtNotes.getText();
+	        	        
+	        	        //Create PatientDataRepo Obj and update patient prescription information
+	        	        PatientDataRepository cp1 = new PatientDataRepository();
+	        	        cp1.editPatientData("prescriptionName", prescriptionName);
+	        	        cp1.editPatientData("dosage", dosage);
+	        	        cp1.editPatientData("duration", duration);
+	        	        cp1.editPatientData("notes", notes);	        	        
+	        		}
+        		});
         
-        PatientDataRepository cp = doctor.getCurrentPatient();
-        cp.addPatientData("firstName", patientName);
+        //Cancel Prescription Button
+        btnCancel.setOnAction(new EventHandler<ActionEvent>()
+		{
+    		@Override
+    		public void handle(ActionEvent event)
+    		{
+    			//Clear all Order Prescription text fields
+    			txtPrescriptionName.setText("");
+    			txtDosage.setText("");  	 		
+    	        txtDuration.setText("");				
+    	        txtNotes.setText("");	        	        
+    		}
+		});
         
-        //Set Patient information
-        currentPatient.setName(patientName);
-        currentPatient.setAge(patientAge);
-        currentPatient.setWeight(weight);
-        currentPatient.setBodyTemp(bodyTemp);
-        currentPatient.setBloodPressure(bloodPressure);
-        currentPatient.setHealthIssues(healthIssues);
-        currentPatient.setMedication(medication);
-        currentPatient.setImmunization(immunization);
+        //Logout Button
+        logoutButton.setOnAction(event -> Main.setScene(LoginView.getScene()));       
         
-        currentPatient.setHEENNT(HEENNT);
-        currentPatient.setCardio(cardio);
-        currentPatient.setRespiratory(respiratory);
-        currentPatient.setGastro(gastro);
-        currentPatient.setMuscu(muscu);
-        currentPatient.setNeuro(neuro);
-        currentPatient.setSkin(skin);
-        currentPatient.setPsych(psych);
-        currentPatient.setFinal(final_);
-        currentPatient.setSummary(summary);
-        
-        //Pass Patient obj to PatientDataRepo to be saved
-        //Need to find out the correct function names for set and pass
-        patientDataRepository.updatePatientRecord(currentPatient);
-       
-        
-        
+        //Message Reply Button
+        btnReply.setOnAction(new EventHandler<ActionEvent>()
+		{
+    		@Override
+    		public void handle(ActionEvent event)
+    		{
+    			//Get Message from textArea box
+    			String message = txtMessage.getText();
+    			
+    			//Getting Sender and Receiver UIDs
+    			// Need to figure out what args to pass
+    			/*Account sender = new Account();
+    			int senderUID = sender.getUID();
+    			
+    			Account receiver = new Account();
+    			int receiverUID = receiver.getUID();
+    			
+    			//Create Message object and send message information
+    			Message message_obj = new Message(senderUID, receiverUID, message);*/
+    				        	        
+    		}
+		});
 	        
 	    // Adding all sections to the main layout
         VBox centerBox = new VBox(20);
