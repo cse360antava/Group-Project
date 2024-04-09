@@ -2,22 +2,21 @@ package antava;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 public class DoctorView 
 {
@@ -27,28 +26,28 @@ public class DoctorView
         BorderPane mainLayout = new BorderPane();
         mainLayout.setPadding(new Insets(10));
         mainLayout.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
-
-        //Header with the company logo 
-        HBox header = new HBox();
-        header.setAlignment(Pos.CENTER);
-        header.setPadding(new Insets(10, 10, 20, 10)); // Add padding to the top, right, bottom, and left
-        Label lblLogo = new Label("ANTAVA");
-        header.getChildren().addAll(lblLogo);
         
-	        //Working on implementing logo
-        	
-        	//Load Logo Image
-	        /*ImageView newLogo = new ImageView(Main.logo.getImage());
-	        newLogo.setFitWidth(250); 
-	    	newLogo.setFitHeight(250);
-	        GridPane.setHalignment(newLogo, javafx.geometry.HPos.CENTER);*/
-	        
-	        /*Image logoImage = new Image(getClass().getResourceAsStream("/logo.jpg"));
-	        ImageView logoView = new ImageView(logoImage);
-	        logoView.setFitHeight(50);
-	        logoView.setPreserveRatio(true);*/
-	        //header.getChildren().addAll(logoView);
+        // Logo and Log Out Button Section
+        StackPane logoPane = new StackPane();
+        logoPane.setAlignment(Pos.TOP_CENTER);
+        logoPane.setPadding(new Insets(10));
 
+	        ImageView newLogo = new ImageView(Main.logo.getImage());
+	        newLogo.setFitWidth(200); 
+	        newLogo.setFitHeight(200);
+	        logoPane.getChildren().add(newLogo);
+	
+	        // Log Out Button
+	        Button logoutButton = new Button("Log Out");
+	        logoutButton.setPadding(new Insets(5));
+	        logoutButton.setOnAction(event -> Main.setScene(LoginView.getScene()));
+	
+        // HBox for the header containing both logo and logout button
+        HBox header = new HBox(750);
+        header.setAlignment(Pos.CENTER_RIGHT);
+        header.setPadding(new Insets(10));
+        header.getChildren().addAll(logoPane, logoutButton);
+		    
         //Patient Information Section
         GridPane patientInfoSection = new GridPane();
         patientInfoSection.setVgap(10);
@@ -61,7 +60,6 @@ public class DoctorView
 	        patientInfoSection.add(lblPatientInfo, 0, 0, 4, 1); //Span across four columns
         
 	        //Patient Information: Sub Fields
-	        
 	        TextField txtFirstName = new TextField();
 	        txtFirstName.setPromptText("Patient Name");
 	        patientInfoSection.add(txtFirstName, 0, 1); //Column 0, Row 1
@@ -86,16 +84,25 @@ public class DoctorView
 	        txtBloodPressure.setPromptText("Blood Pressure");
 	        patientInfoSection.add(txtBloodPressure, 1, 3); //Column 1, Row 3
 	        
-	        TextField txtPreviousHealthIssues = new TextField();
+	        TextArea txtPreviousHealthIssues = new TextArea();
 	        txtPreviousHealthIssues.setPromptText("Previous Health Issues");
+	        txtPreviousHealthIssues.setPrefWidth(400);
+	        txtPreviousHealthIssues.setPrefHeight(60);
+	        txtPreviousHealthIssues.setMaxHeight(60);
 	        patientInfoSection.add(txtPreviousHealthIssues, 2, 1); //Column 2, Row 1
 	        
-	        TextField txtPreviousMedication = new TextField();
+	        TextArea txtPreviousMedication = new TextArea();
 	        txtPreviousMedication.setPromptText("Previous Medication");
+	        txtPreviousMedication.setPrefWidth(400);
+	        txtPreviousMedication.setPrefHeight(60);
+	        txtPreviousMedication.setMaxHeight(60);
 	        patientInfoSection.add(txtPreviousMedication, 2, 2); //Column 2, Row 2
 	        
-	        TextField txtImmunizationHistory = new TextField();
+	        TextArea txtImmunizationHistory = new TextArea();
 	        txtImmunizationHistory.setPromptText("Immunization History");
+	        txtImmunizationHistory.setPrefWidth(400);
+	        txtImmunizationHistory.setPrefHeight(60);
+	        txtImmunizationHistory.setMaxHeight(60);
 	        patientInfoSection.add(txtImmunizationHistory, 2, 3); //Column 2, Row 3
 	        
 	   //Add Messages Section
@@ -106,8 +113,7 @@ public class DoctorView
 	   
 	   TextArea txtMessage = new TextArea();
 	   txtMessage.setPromptText("Receive or Compose Messages");
-	   Button btnReply = new Button("Reply");
-	   
+	   Button btnReply = new Button("Reply");	   
 	   messageSection.getChildren().addAll(lblMessages, txtMessage, btnReply);
 	        
 	   //Physical Exam Section
@@ -147,19 +153,23 @@ public class DoctorView
 	        
 	        TextField txtSkin = new TextField();
 	        txtSkin.setPromptText("Skin");
-	        physicalExamSection.add(txtSkin, 2, 1);  //Column 2, Row 1
+	        physicalExamSection.add(txtSkin, 0, 4);  //Column 0, Row 4
 	        
 	        TextField txtPsychiatric = new TextField();
 	        txtPsychiatric.setPromptText("Psychiatric");
-	        physicalExamSection.add(txtPsychiatric, 2, 2);  //Column 2, Row 2
+	        physicalExamSection.add(txtPsychiatric, 1, 4);  //Column 1, Row 4
 	        
-	        TextField txtFinal = new TextField();
+	        TextArea txtFinal = new TextArea();
 	        txtFinal.setPromptText("Final Assessment");
-	        physicalExamSection.add(txtFinal, 2, 3);  //Column 2, Row 3
+	        txtFinal.setPrefWidth(400);
+	        txtFinal.setPrefHeight(100);
+	        physicalExamSection.add(txtFinal, 2, 1, 1, 4); //Column 2, Row 1
 	        
 	        TextArea txtSummary = new TextArea();
 	        txtSummary.setPromptText("Summary");
-	        physicalExamSection.add(txtSummary, 0, 4, 3, 1);
+	        txtSummary.setPrefWidth(400);
+	        txtSummary.setPrefHeight(100);
+	        physicalExamSection.add(txtSummary, 0, 5, 3, 1); //Column 0, Row 5
 	        
 	                
         // Prescription Order Section
@@ -195,18 +205,94 @@ public class DoctorView
 	        prescriptionOrderSection.add(btnOrder, 2, 1); // Column 2, Row 1
 	        prescriptionOrderSection.add(btnCancel, 2, 2); // Column 3, Row 2
 
-        HBox patientAndMessageSections = new HBox(20);
+        HBox patientAndMessageSections = new HBox(400);
         patientAndMessageSections.getChildren().addAll(patientInfoSection, messageSection);
+        
+	    Button confirmButton = new Button("Confirm");
+        HBox confirmSection = new HBox();
+        confirmSection.setAlignment(Pos.BOTTOM_RIGHT);
+        confirmSection.setPadding(new Insets(5));
+        confirmSection.getChildren().add(confirmButton);
+        
+        //Event Handlers
+        
+        //Confirm Button
+        confirmButton.setOnAction(new EventHandler<ActionEvent>()
+        		{
+	        		@Override
+	        		public void handle(ActionEvent event)
+	        		{
+	        			//Pull patient information from the patient information text fields
+	        			String patientName = txtFirstName.getText();
+	        			int patientAge = Integer.parseInt(txtAge.getText());  	 		// Convert age to integer
+	        	        double weight = Double.parseDouble(txtWeight.getText()); 		// Convert weight to double
+	        	        double height = Double.parseDouble(txtHeight.getText()); 		// Convert height to double
+	        	        double bodyTemp = Double.parseDouble(txtBodyTemp.getText()); 	// Convert bodyTemp to double
+	        	        String bloodPressure = txtBloodPressure.getText();				// String to represent bloodPressure
+	        	        String healthIssues = txtPreviousHealthIssues.getText();		// String to represent health issues
+	        	        String medication = txtPreviousMedication.getText();
+	        	        String immunization = txtImmunizationHistory.getText();
+	        	        
+	        	        //Pull Physical Exam Report information
+	        	        String HEENNT = txtHead.getText();
+	        	        String cardio = txtCardio.getText();
+	        	        String respiratory = txtRespiratory.getText();
+	        	        String gastro = txtGastro.getText();
+	        	        String muscu = txtMuscu.getText();
+	        	        String neuro = txtNeuro.getText();
+	        	        String skin = txtSkin.getText();
+	        	        String psych = txtPsychiatric.getText();
+	        	        String final_ = txtFinal.getText();
+	        	        String summary = txtSummary.getText();
+	        		}
+        		});
+        
+        //Create Patient Obj and update with information
+        //Patient currentPatient = doctor.getCurrentPatient();
+        
+        PatientDataRepository cp = doctor.getCurrentPatient();
+        cp.addPatientData("firstName", patientName);
+        
+        //Set Patient information
+        currentPatient.setName(patientName);
+        currentPatient.setAge(patientAge);
+        currentPatient.setWeight(weight);
+        currentPatient.setBodyTemp(bodyTemp);
+        currentPatient.setBloodPressure(bloodPressure);
+        currentPatient.setHealthIssues(healthIssues);
+        currentPatient.setMedication(medication);
+        currentPatient.setImmunization(immunization);
+        
+        currentPatient.setHEENNT(HEENNT);
+        currentPatient.setCardio(cardio);
+        currentPatient.setRespiratory(respiratory);
+        currentPatient.setGastro(gastro);
+        currentPatient.setMuscu(muscu);
+        currentPatient.setNeuro(neuro);
+        currentPatient.setSkin(skin);
+        currentPatient.setPsych(psych);
+        currentPatient.setFinal(final_);
+        currentPatient.setSummary(summary);
+        
+        //Pass Patient obj to PatientDataRepo to be saved
+        //Need to find out the correct function names for set and pass
+        patientDataRepository.updatePatientRecord(currentPatient);
+       
+        
+        
 	        
 	    // Adding all sections to the main layout
         VBox centerBox = new VBox(20);
         centerBox.getChildren().addAll(patientAndMessageSections, physicalExamSection, prescriptionOrderSection);
         mainLayout.setTop(header);
         mainLayout.setCenter(centerBox);
+        mainLayout.setBottom(confirmSection);
+        
 
         // Scene and Stage setup
-        Scene doctorScene = new Scene(mainLayout, 850, 600);
-        
+        double screenWidth = Screen.getPrimary().getVisualBounds().getWidth() - 100;
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight() - 100;
+        Scene doctorScene = new Scene(mainLayout, screenWidth, screenHeight);
         return doctorScene;
 	}
 	
