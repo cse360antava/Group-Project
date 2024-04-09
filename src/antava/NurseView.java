@@ -24,11 +24,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 
-public class NurseView 
-{
+public class NurseView {
 	
-	public static Scene getScene(Nurse nurse) 
-	{
+	public static Scene getScene(Nurse nurse) {
 		
 		GridPane nurseView = new GridPane();
 		
@@ -48,8 +46,7 @@ public class NurseView
         col2.setPercentWidth(100);
         nurseView.getColumnConstraints().addAll(col1, col2);
         
-        for (int i = 0; i < 10; i++) 
-        {
+        for (int i = 0; i < 10; i++) {
             RowConstraints row = new RowConstraints();
             row.setPercentHeight(25);
             nurseView.getRowConstraints().add(row);
@@ -88,6 +85,7 @@ public class NurseView
         messagesLabel.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
         healthConcernsLabel.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
         
+        TextField patientIDField = new TextField();
         TextField patientNameField = new TextField();
         TextField ageField = new TextField();
         TextArea healthIssueArea = new TextArea();
@@ -97,10 +95,11 @@ public class NurseView
         TextField heightField = new TextField();
         TextField temperatureField = new TextField();
         TextField bloodPressureField = new TextField();
-        TextArea allergiesTextArea = new TextArea();
+        TextArea allergiesArea = new TextArea();
         TextArea healthConcernsArea = new TextArea();
         TextArea messagesArea = new TextArea();
         
+        patientIDField.setPromptText("Patient ID");
         patientNameField.setPromptText("Patient Name");
         ageField.setPromptText("Patient Age");
         healthIssueArea.setPromptText("Previous Health Issues");
@@ -110,7 +109,7 @@ public class NurseView
         heightField.setPromptText("Height");
         temperatureField.setPromptText("Body Temperature");
         bloodPressureField.setPromptText("Blood Pressure");
-        allergiesTextArea.setPromptText("Allergies");
+        allergiesArea.setPromptText("Allergies");
         healthConcernsArea.setPromptText("Health Concerns");
         
         // Check Age
@@ -118,6 +117,8 @@ public class NurseView
             checkAge(ageField, weightField, heightField, temperatureField, bloodPressureField);
         });
         
+        patientIDField.setPrefWidth(150);
+        patientIDField.setMaxWidth(150);
         patientNameField.setPrefWidth(150);
         patientNameField.setMaxWidth(150);
         ageField.setPrefWidth(150);
@@ -136,10 +137,10 @@ public class NurseView
         temperatureField.setMaxWidth(150);
         bloodPressureField.setPrefWidth(150);
         bloodPressureField.setMaxWidth(150);
-        allergiesTextArea.setPrefWidth(500);
-        allergiesTextArea.setMaxWidth(500);
-        allergiesTextArea.setPrefHeight(100);
-        allergiesTextArea.setMaxHeight(100);
+        allergiesArea.setPrefWidth(500);
+        allergiesArea.setMaxWidth(500);
+        allergiesArea.setPrefHeight(100);
+        allergiesArea.setMaxHeight(100);
         healthConcernsArea.setPrefWidth(500);
         healthConcernsArea.setMaxWidth(500);
         messagesArea.setPrefWidth(750);
@@ -147,9 +148,9 @@ public class NurseView
         messagesArea.setPrefHeight(250);
         messagesArea.setMaxHeight(250);
         
-        patientBox.getChildren().addAll(patientLabel, patientNameField, ageField, healthIssueArea, immuneHistoryArea, currentPrescriptionsArea);
+        patientBox.getChildren().addAll(patientLabel, patientIDField, patientNameField, ageField, healthIssueArea, immuneHistoryArea, currentPrescriptionsArea);
         vitalsBox.getChildren().addAll(vitalsLabel, weightField, heightField, temperatureField, bloodPressureField);
-        allergiesBox.getChildren().addAll(allergiesLabel, allergiesTextArea);
+        allergiesBox.getChildren().addAll(allergiesLabel, allergiesArea);
         messagesBox.getChildren().addAll(messagesLabel, messagesArea, replyButton);
         healthConcernsBox.getChildren().addAll(healthConcernsLabel, healthConcernsArea);
         
@@ -163,22 +164,57 @@ public class NurseView
         nurseView.add(confirmButton, 1, 9, 1, 1);
         
         //nurseView.setGridLinesVisible(true);
+        patientIDField.textProperty().addListener((observable, oldValue, newValue) -> {
+            getPatientInfo(nurse, patientIDField, patientNameField, healthIssueArea, immuneHistoryArea, currentPrescriptionsArea, ageField);
+        });
+        
+        confirmButton.setOnAction(event -> {
+        	String patientID = patientIDField.getText();
+        	//String patientName = patientNameField.getText();
+        	String age = ageField.getText(); 
+        	String weight = weightField.getText();
+        	String height = heightField.getText();
+        	String temperature = temperatureField.getText();
+            //String healthIssues = healthIssueArea.getText();
+            //String immuneHistory = immuneHistoryArea.getText();
+            //String currentPrescriptions = currentPrescriptionsArea.getText();
+            String bloodPressure = bloodPressureField.getText();
+            String allergies = allergiesArea.getText();
+            String healthConcerns = healthConcernsArea.getText();
+            nurse.setPatient(patientID);
+            Patient curPatient = nurse.getPatient();
+            if (curPatient != null) {
+            	PatientDataRepository patientRepo = curPatient.patientData;
+            	//patientRepo.editPatientData("age", age);
+            	patientRepo.editPatientData("weight", weight);
+            	patientRepo.editPatientData("height", height);
+            	patientRepo.editPatientData("bodyTemperature", temperature);
+            	patientRepo.editPatientData("bloodPressure", bloodPressure);
+            	patientRepo.editPatientData("allergies", allergies);
+            	patientRepo.editPatientData("healthConcerns", healthConcerns);
+            	  
+            	//System.out.println("Age: " + (String) patientRepo.getDataRepo().get("age"));
+            	System.out.println("Weight: " + (String) patientRepo.getDataRepo().get("weight"));
+            	System.out.println("Height: " + (String) patientRepo.getDataRepo().get("height"));
+            	System.out.println("Temp: " + (String) patientRepo.getDataRepo().get("bodyTemperature"));
+            	System.out.println("Pressure: " + (String) patientRepo.getDataRepo().get("bloodPressure"));
+            	System.out.println("Allergies: " + (String) patientRepo.getDataRepo().get("allergies"));
+            	System.out.println("Health Concerns: " + (String) patientRepo.getDataRepo().get("healthConcerns"));
+            }
+            
+        }); 
 
         return nurseScene;
            
 	}
 	
-	public static void checkAge(TextField ageField, TextField weightField, TextField heightField, TextField temperatureField, TextField bloodPressureField)
-	{
+	public static void checkAge(TextField ageField, TextField weightField, TextField heightField, TextField temperatureField, TextField bloodPressureField) {
 		int patientAge = 0;
 		
-        try 
-        {
+        try {
         	patientAge = Integer.parseInt(ageField.getText());
-        } 
-        catch (NumberFormatException exception) 
-        {
-        	System.err.println("Failed to get age: " + exception.getMessage());
+        } catch (NumberFormatException exception) {
+        	
         }
         
         if( patientAge > 12) 
@@ -187,14 +223,36 @@ public class NurseView
             heightField.setEditable(true);
             temperatureField.setEditable(true);
             bloodPressureField.setEditable(true);
-        }
-        else
-        {
+        } else {
         	weightField.setEditable(false);
             heightField.setEditable(false);
             temperatureField.setEditable(false);
             bloodPressureField.setEditable(false);
-        }
-	        
+        }   
 	}
+	
+	public static void getPatientInfo(Nurse nurse, TextField patientIDField, TextField patientNameField, TextArea healthIssueArea, TextArea immuneHistoryArea, TextArea currentPrescriptionsArea, TextField ageField) {
+		String patientID = patientIDField.getText();
+		nurse.setPatient(patientID);
+        Patient curPatient = nurse.getPatient();
+        if (curPatient != null) {
+        	PatientDataRepository patientRepo = curPatient.patientData;
+        	
+        	patientNameField.setText((String) patientRepo.getDataRepo().get("firstName") + " "  
+        	+ (String) patientRepo.getDataRepo().get("lastName"));
+        	
+        	ageField.setText((String) patientRepo.getDataRepo().get("age"));
+        	healthIssueArea.setText((String) patientRepo.getDataRepo().get("previousHealthIssues"));
+            immuneHistoryArea.setText((String) patientRepo.getDataRepo().get("immunizationHistory"));
+            currentPrescriptionsArea.setText((String) patientRepo.getDataRepo().get("currentPrescriptions"));
+        	nurse.currentPatient = null;
+        } else {
+        	patientNameField.setText("");
+        	ageField.setText("");
+        	healthIssueArea.setText("");
+        	immuneHistoryArea.setText("");
+        	currentPrescriptionsArea.setText("");
+        }
+	}
+	
 }
