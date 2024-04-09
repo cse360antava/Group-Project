@@ -5,8 +5,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -22,9 +24,11 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 
-public class NurseView {
+public class NurseView 
+{
 	
-	public static Scene getScene(Nurse nurse) {
+	public static Scene getScene(Nurse nurse) 
+	{
 		
 		GridPane nurseView = new GridPane();
 		
@@ -44,7 +48,8 @@ public class NurseView {
         col2.setPercentWidth(100);
         nurseView.getColumnConstraints().addAll(col1, col2);
         
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) 
+        {
             RowConstraints row = new RowConstraints();
             row.setPercentHeight(25);
             nurseView.getRowConstraints().add(row);
@@ -108,6 +113,11 @@ public class NurseView {
         allergiesTextArea.setPromptText("Allergies");
         healthConcernsArea.setPromptText("Health Concerns");
         
+        // Check Age
+        ageField.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkAge(ageField, weightField, heightField, temperatureField, bloodPressureField);
+        });
+        
         patientNameField.setPrefWidth(150);
         patientNameField.setMaxWidth(150);
         ageField.setPrefWidth(150);
@@ -156,5 +166,35 @@ public class NurseView {
 
         return nurseScene;
            
+	}
+	
+	public static void checkAge(TextField ageField, TextField weightField, TextField heightField, TextField temperatureField, TextField bloodPressureField)
+	{
+		int patientAge = 0;
+		
+        try 
+        {
+        	patientAge = Integer.parseInt(ageField.getText());
+        } 
+        catch (NumberFormatException exception) 
+        {
+        	System.err.println("Failed to get age: " + exception.getMessage());
+        }
+        
+        if( patientAge > 12) 
+        {
+        	weightField.setEditable(true);
+            heightField.setEditable(true);
+            temperatureField.setEditable(true);
+            bloodPressureField.setEditable(true);
+        }
+        else
+        {
+        	weightField.setEditable(false);
+            heightField.setEditable(false);
+            temperatureField.setEditable(false);
+            bloodPressureField.setEditable(false);
+        }
+	        
 	}
 }
