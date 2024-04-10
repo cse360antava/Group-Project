@@ -115,18 +115,25 @@ public class DoctorView
 	   Label lblMessages = new Label("Messages");
 	   lblMessages.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
 	   
-	   TextArea txtMessage = new TextArea();
-	   txtMessage.setPrefWidth(750);
-	   txtMessage.setMaxWidth(750);
-	   txtMessage.setPrefHeight(250);
-	   txtMessage.setMaxHeight(250);
-	   Button btnReply = new Button("Reply");	
+	   HBox messages = new HBox(25);
+       ArrayList<Message> ms = MessageRepo.getTo(doctor.getID());
+       for (Message m : ms) {
+       	messages.getChildren().add(MessageBar.getNode(m, doctor));
+       }
+       if (ms.isEmpty()) {
+       	messages.getChildren().add(new Text("No messages."));
+       }
+       
+       Button composeButton = new Button("Compose Message");
+       composeButton.setOnAction(event -> {
+       	Main.setScene(ComposeView.getScene(doctor, null));
+       });
 	   
 	   messageSection.setVgap(10);
 	   messageSection.setHgap(10);
 	   messageSection.add(lblMessages, 0, 0);
-	   messageSection.add(txtMessage, 0, 1);
-	   messageSection.add(btnReply, 0, 2);
+	   messageSection.add(messages, 0, 1);
+	   messageSection.add(composeButton, 0, 2);
 	        
 	   //Physical Exam Section
        GridPane physicalExamSection = new GridPane();

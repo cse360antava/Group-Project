@@ -57,7 +57,7 @@ public class PatientView {
         GridPane.setHalignment(newLogo, javafx.geometry.HPos.CENTER);
         
         Button logoutButton = new Button("Log Out");
-        Button sendButton = new Button("Send");
+        Button composeButton = new Button("Compose Message");
         Button confirmButton = new Button("Confirm");
         
         GridPane.setHalignment(logoutButton, javafx.geometry.HPos.RIGHT);
@@ -90,7 +90,6 @@ public class PatientView {
         TextArea healthIssueArea = new TextArea();
         TextArea immuneHistoryArea = new TextArea();
         TextArea currentPrescriptionsArea = new TextArea();
-        TextArea messagesArea = new TextArea();
         TextArea visitHistoryArea = new TextArea();
 
         firstNameField.setPromptText("First Name");
@@ -161,10 +160,15 @@ public class PatientView {
         visitHistoryArea.setMaxWidth(750);
         visitHistoryArea.setPrefHeight(250);
         visitHistoryArea.setMaxHeight(250);
-        messagesArea.setPrefWidth(750);
-        messagesArea.setMaxWidth(750);
-        messagesArea.setPrefHeight(250);
-        messagesArea.setMaxHeight(250);
+        
+        HBox messages = new HBox(25);
+        ArrayList<Message> ms = MessageRepo.getTo(patient.getID());
+        for (Message m : ms) {
+        	messages.getChildren().add(MessageBar.getNode(m, patient));
+        }
+        if (ms.isEmpty()) {
+        	messages.getChildren().add(new Text("No messages."));
+        }
         
         HBox nameBox = new HBox(25);
         HBox birthBox = new HBox(25);
@@ -176,15 +180,19 @@ public class PatientView {
         insuranceBox.getChildren().addAll(insuranceField, pharmacyField);
         patientInfoBox.getChildren().addAll(patientInfoLabel, nameBox, birthBox, patientContactBox, insuranceBox,
         									healthIssueArea, immuneHistoryArea, currentPrescriptionsArea);
-        messagesBox.getChildren().addAll(messagesLabel, messagesArea, sendButton);
+        messagesBox.getChildren().addAll(messagesLabel, messages, composeButton);
         visitHistoryBox.getChildren().addAll(visitHistoryLabel, visitHistoryArea);
         
         patientView.add(newLogo, 0, 1, 2, 1);
         patientView.add(logoutButton, 1, 0, 1, 1);
-        patientView.add(patientInfoBox, 0, 3, 1, 2);
+        patientView.add(patientInfoBox, 0, 3, 1, 2);  
         patientView.add(messagesBox, 1, 3, 1, 4);
         patientView.add(visitHistoryBox, 0, 6, 1, 3);
         patientView.add(confirmButton, 1, 9, 1, 1);
+        
+        composeButton.setOnAction(event -> {
+        	Main.setScene(ComposeView.getScene(patient, null));
+        });
         
         confirmButton.setOnAction(event -> {
         	
@@ -211,7 +219,7 @@ public class PatientView {
             patient.patientData.editPatientData("email", patientEmail);
             patient.patientData.editPatientData("phoneNumber", patientNumber);
             patient.patientData.editPatientData("insuranceCompany", insuranceName);
-            patient.patientData.editPatientData("insurancePhoneNumber", pharmacyField);
+            patient.patientData.editPatientData("pharmacy", pharmacy);
             patient.patientData.editPatientData("previousHealthIssues", healthIssues);
             patient.patientData.editPatientData("immunizationHistory", immuneHistory);
             patient.patientData.editPatientData("currentPrescriptions", currentPrescriptions);

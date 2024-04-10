@@ -30,9 +30,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
     	s = primaryStage; // initialize the singleton
     	
-    	// Read Files and loads in patient accounts and information
-    	readPatientInfoFiles();
-    	
+    	// NOTE: because of how UIDs are generated, they start at 1
     	// Add default nurse account
         Nurse defaultNurse = new Nurse(new Account("nurse", "nurse321", "nurse"));
         Main.userList.put(defaultNurse.getAccount().getUID(), defaultNurse);
@@ -40,6 +38,9 @@ public class Main extends Application {
         // Add default doctor account
         Doctor defaultDoctor = new Doctor(new Account("doctor", "doctor321", "doctor"));
         Main.userList.put(defaultDoctor.getAccount().getUID(), defaultDoctor);
+        
+        // Read Files and loads in patient accounts and information
+    	readPatientInfoFiles();
         
     	logo = new ImageView(new Image("file:src/antava/logo.jpg"));
         setScene(LoginView.getScene());

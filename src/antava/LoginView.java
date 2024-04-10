@@ -24,7 +24,7 @@ public class LoginView {
 	
 	public static Scene getScene() {
 		// LOGIN VIEW
-    	VBox loginView = new VBox();
+    	VBox loginView = new VBox(10);
     	loginView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	loginView.setAlignment(Pos.CENTER);
     	
@@ -87,7 +87,7 @@ public class LoginView {
             		}
             	} else {
             		// if unsuccessful, show an error message
-            		Main.setScene(MessageView.getScene("Incorrect username or password.", loginScene));
+            		Main.setScene(PopupView.getScene("Incorrect username or password.", loginScene));
             	}
         	}
         });
@@ -114,11 +114,11 @@ public class LoginView {
         			Main.userList.put(newPatient.account.getUID(), newPatient);
         			
         			// show a success message
-            		Main.setScene(MessageView.getScene("Account successfully created.\nUser ID: " + newPatient.account.getUID(), loginScene, "Proceed to login"));
+            		Main.setScene(PopupView.getScene("Account successfully created.\nUser ID: " + newPatient.account.getUID(), loginScene, "Proceed to login"));
 
             	} else {
             		// display an error if there's a duplicate username
-                	Main.setScene(MessageView.getScene("An account already exists with that username.", loginScene, "Proceed to login"));
+                	Main.setScene(PopupView.getScene("An account already exists with that username.", loginScene, "Proceed to login"));
 
             	}
     		}

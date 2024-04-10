@@ -8,8 +8,6 @@ public class Patient extends User {
 	public Patient(Account account) {
 		this.account = account;
 		this.patientData = new PatientDataRepository();
-		this.messager = new MessageManager();
-		this.messager.setOwnerUID(account.getUID());
 		this.patientID = "";
 	}
 	
@@ -19,8 +17,7 @@ public class Patient extends User {
         String birthDay = (String) patientData.getDataRepo().get("birthDay");
         String birthMonth = (String) patientData.getDataRepo().get("birthMonth");
         String birthYear = (String) patientData.getDataRepo().get("birthYear");
-        this.patientID = firstName.substring(0, 1) + firstName.substring(firstName.length() - 1) 
-        + birthMonth + lastName.substring(0, 1) + lastName.substring(lastName.length() - 1) + birthDay + birthYear;
+        this.patientID = birthYear + firstName + birthMonth + lastName + birthDay;
 	 } 	 
 	 
 	 public String getPatientID() {
@@ -29,6 +26,10 @@ public class Patient extends User {
 	 
 	 public void setPatientID(String inputtedPatientID) {
 		 this.patientID = inputtedPatientID;
+	 }
+	 
+	 public String getID() {
+		 return getPatientID();
 	 }
 
 	    
