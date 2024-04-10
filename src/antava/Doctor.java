@@ -4,10 +4,11 @@ import java.util.List;
 
 public class Doctor extends User 
 {
+	public Account account;
+	
 	private PatientDataRepository currentPatient;
-	private Account account;
 	private MessageManager messager;
-		
+			
 	
 	public Doctor(Account account, PatientDataRepository currentPatient, MessageManager messages) 
 	{

@@ -315,19 +315,16 @@ public class DoctorView
     		@Override
     		public void handle(ActionEvent event)
     		{
-    			//Get Message from textArea box
+    			//Get Message from textArea box 
     			String message = txtMessage.getText();
     			
     			//Getting Sender and Receiver UIDs
-    			// Need to figure out what args to pass
-    			/*Account sender = new Account();
-    			int senderUID = sender.getUID();
-    			
-    			Account receiver = new Account();
-    			int receiverUID = receiver.getUID();
+    			int senderUID = doctor.account.getUID();
+    			User user = new User();
+    			int receiverUID = user.account.getUID();
     			
     			//Create Message object and send message information
-    			Message message_obj = new Message(senderUID, receiverUID, message);*/
+    			Message message_obj = new Message(senderUID, receiverUID, message);
     				        	        
     		}
 		});
