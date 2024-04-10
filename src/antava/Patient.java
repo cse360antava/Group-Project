@@ -8,8 +8,6 @@ public class Patient extends User {
 	public Patient(Account account) {
 		this.account = account;
 		this.patientData = new PatientDataRepository();
-		this.messager = new MessageManager();
-		this.messager.setOwnerUID(account.getUID());
 		this.patientID = "";
 	}
 	

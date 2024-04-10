@@ -201,13 +201,8 @@ public class PatientView {
         	String messageContent = composeMessageArea.getText();
         	
         	if (messageContent.compareTo("") != 0) {
-                MessageManager nurseMessageManager = nurse.getMessageManager();
-                boolean messageSent = nurseMessageManager.composeNewMessage(nurseMessageManager, nurse.account.getUID(), messageContent);
-                if (messageSent) {
-                    System.out.println("Message sent to nurse: " + messageContent);
-                    messagesArea.appendText("You -> Nurse: " + messageContent);
-                    composeMessageArea.clear();
-                }
+                // TODO
+                composeMessageArea.clear();
         	}
         });
         
@@ -216,13 +211,7 @@ public class PatientView {
         	String messageContent = composeMessageArea.getText();
         	
         	if (messageContent.compareTo("") != 0) {
-                MessageManager doctorMessageManager = doctor.getMessageManager();
-                boolean messageSent = doctorMessageManager.composeNewMessage(doctorMessageManager, doctor.account.getUID(), messageContent);
-                if (messageSent) {
-                	messagesArea.appendText("You -> Doctor: " + messageContent);
-                    System.out.println("Message sent to doctor: " + messageContent);
-                    composeMessageArea.clear();
-                }
+                // TODO
         	}
         });
         
