@@ -116,17 +116,25 @@ public class DoctorView
 	   lblMessages.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
 	   
 	   TextArea txtMessage = new TextArea();
+	   TextArea txtComposeMessage = new TextArea();
+	   txtMessage.setPromptText("View Your Messages");
+	   txtComposeMessage.setPromptText("Compose A Message");
 	   txtMessage.setPrefWidth(750);
 	   txtMessage.setMaxWidth(750);
 	   txtMessage.setPrefHeight(250);
 	   txtMessage.setMaxHeight(250);
+	   txtComposeMessage.setPrefWidth(500);
+	   txtComposeMessage.setMaxWidth(500);
+	   txtComposeMessage.setPrefHeight(150);
+	   txtComposeMessage.setMaxHeight(150);
 	   Button btnReply = new Button("Reply");	
 	   
 	   messageSection.setVgap(10);
 	   messageSection.setHgap(10);
 	   messageSection.add(lblMessages, 0, 0);
 	   messageSection.add(txtMessage, 0, 1);
-	   messageSection.add(btnReply, 0, 2);
+	   messageSection.add(txtComposeMessage, 0, 2);
+	   messageSection.add(btnReply, 0, 3);
 	        
 	   //Physical Exam Section
        GridPane physicalExamSection = new GridPane();

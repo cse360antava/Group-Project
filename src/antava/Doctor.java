@@ -3,10 +3,12 @@ package antava;
 
 public class Doctor extends User {
 	public Patient currentPatient;
+	private MessageManager messager;
 	
 	public Doctor(Account account) {
 		this.account = account;
 		this.currentPatient = null;
+		this.messager = new MessageManager();
 	}
 	
 	public void setPatient(String inputtedPatientID) {

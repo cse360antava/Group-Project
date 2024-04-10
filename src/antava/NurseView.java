@@ -98,6 +98,7 @@ public class NurseView {
         TextArea allergiesArea = new TextArea();
         TextArea healthConcernsArea = new TextArea();
         TextArea messagesArea = new TextArea();
+        TextArea composeMessageArea = new TextArea();
         
         patientIDField.setPromptText("Patient ID");
         patientNameField.setPromptText("Patient Name");
@@ -111,6 +112,8 @@ public class NurseView {
         bloodPressureField.setPromptText("Blood Pressure");
         allergiesArea.setPromptText("Allergies");
         healthConcernsArea.setPromptText("Health Concerns");
+        messagesArea.setPromptText("View Your Messages");
+        composeMessageArea.setPromptText("Compose A Message");
         
         // Check Age
         ageField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -147,11 +150,15 @@ public class NurseView {
         messagesArea.setMaxWidth(750);
         messagesArea.setPrefHeight(250);
         messagesArea.setMaxHeight(250);
+        composeMessageArea.setPrefWidth(500);
+        composeMessageArea.setMaxWidth(500);
+        composeMessageArea.setPrefHeight(150);
+        composeMessageArea.setMaxHeight(150);
         
         patientBox.getChildren().addAll(patientLabel, patientIDField, patientNameField, ageField, healthIssueArea, immuneHistoryArea, currentPrescriptionsArea);
         vitalsBox.getChildren().addAll(vitalsLabel, weightField, heightField, temperatureField, bloodPressureField);
         allergiesBox.getChildren().addAll(allergiesLabel, allergiesArea);
-        messagesBox.getChildren().addAll(messagesLabel, messagesArea, replyButton);
+        messagesBox.getChildren().addAll(messagesLabel, messagesArea, composeMessageArea, replyButton);
         healthConcernsBox.getChildren().addAll(healthConcernsLabel, healthConcernsArea);
         
         nurseView.add(newLogo, 0, 1, 2, 1);

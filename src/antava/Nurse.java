@@ -3,10 +3,12 @@
 
 public class Nurse extends User {
 	public Patient currentPatient;
+	private MessageManager messager;
 	
 	public Nurse(Account account) {
 		this.account = account;
 		this.currentPatient = null;
+		this.messager = new MessageManager();
 	}
 	
 	public void setPatient(String inputtedPatientID) {

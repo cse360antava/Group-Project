@@ -1,7 +1,5 @@
 package antava;
 
-import java.util.ArrayList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -41,7 +39,7 @@ public class MessageManager {
 		ownerUID = 0;
 		//baseDir is the directory that you want to put your files in - so if testing
 		//change this to be whatever directory you want the files to be in
-		baseDir = "src/";
+		baseDir = "C:\\Users\\chris\\Downloads\\College\\2024 Spring Sem\\CSE 360\\groupProjectPhase3Testing";
 		msgDir = new File(String.format("%s\\messaging", baseDir));
 		ownerDir = new File(String.format("%s\\messaging\\%d", baseDir, ownerUID));
 		inDir = new File(String.format("%s\\messaging\\%d\\in", baseDir, ownerUID));
@@ -66,7 +64,6 @@ public class MessageManager {
 			ownerUID = newOwnerUID;
 		}
 	}
-	
 	public int getNextMessageCount() {
 		messageCount++;
 		return messageCount;

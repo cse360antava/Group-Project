@@ -7,4 +7,8 @@ public class User {
 	public Account getAccount() {
 		return this.account;
 	}
+
+	public MessageManager getMessageManager() {
+		return this.messager;
+	}
 }
