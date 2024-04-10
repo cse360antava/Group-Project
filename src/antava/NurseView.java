@@ -187,12 +187,7 @@ public class NurseView {
             	patientRepo.editPatientData("allergies", allergies);
             	patientRepo.editPatientData("healthConcerns", healthConcerns);
             	  
-            	/*System.out.println("Weight: " + (String) patientRepo.getDataRepo().get("weight"));
-            	System.out.println("Height: " + (String) patientRepo.getDataRepo().get("height"));
-            	System.out.println("Temp: " + (String) patientRepo.getDataRepo().get("bodyTemperature"));
-            	System.out.println("Pressure: " + (String) patientRepo.getDataRepo().get("bloodPressure"));
-            	System.out.println("Allergies: " + (String) patientRepo.getDataRepo().get("allergies"));
-            	System.out.println("Health Concerns: " + (String) patientRepo.getDataRepo().get("healthConcerns")); */
+            	System.out.println("Information Added By Nurse");
             }
             
         }); 

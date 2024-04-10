@@ -218,21 +218,6 @@ public class PatientView {
             patient.createPatientID();
             patient.patientData.editPatientData("patientID", patient.getPatientID());
   
-        	/*System.out.println("First Name: " + (String) patient.patientData.getDataRepo().get("firstName"));
-        	System.out.println("Last Name: " + (String) patient.patientData.getDataRepo().get("lastName"));
-        	System.out.println("Date Of Birth: " + (String) patient.patientData.getDataRepo().get("birthMonth") + "/" + 
-        			(String) patient.patientData.getDataRepo().get("birthDay") + "/" + 
-        			(String) patient.patientData.getDataRepo().get("birthYear")	
-        	);
-        	
-        	System.out.println("Age: " + (String) patient.patientData.getDataRepo().get("age"));
-        	System.out.println("Email: " + (String) patient.patientData.getDataRepo().get("email"));
-        	System.out.println("Number: " + (String) patient.patientData.getDataRepo().get("phoneNumber"));
-        	System.out.println("Insurance: " + (String) patient.patientData.getDataRepo().get("insuranceCompany"));
-        	System.out.println("Insurance Number: " + (String) patient.patientData.getDataRepo().get("insurancePhoneNumber"));
-        	System.out.println("Health Issues: " + (String) patient.patientData.getDataRepo().get("previousHealthIssues"));
-        	System.out.println("Immune History: " + (String) patient.patientData.getDataRepo().get("immunizationHistory"));
-        	System.out.println("Medications: " + (String) patient.patientData.getDataRepo().get("currentPrescriptions")); */
         	System.out.println("Patient ID: " + (String) patient.patientData.getDataRepo().get("patientID") + "\n");
         });
         
