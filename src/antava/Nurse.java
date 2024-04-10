@@ -23,6 +23,10 @@ public class Nurse extends User {
 		}
 	}
 	
+	public MessageManager getMessageManager() {
+		return this.messager;
+	}
+	
 	public Patient getPatient() {
 		return this.currentPatient;
 	}
