@@ -23,4 +23,8 @@ public class Doctor extends User {
 	public Patient getPatient() {
 		return this.currentPatient;
 	}
+	
+	public String getID() {
+		return "doctor";
+	}
 }

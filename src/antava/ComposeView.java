@@ -21,7 +21,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 
 public class ComposeView {
-	public static Scene getScene(String sender, String subject, User user) {
+	public static Scene getScene(User user, String subject) {
+		String sender = user.getID();
 		VBox composeView = new VBox();
     	composeView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	composeView.setAlignment(Pos.CENTER);
@@ -76,6 +77,8 @@ public class ComposeView {
         body.setMaxHeight(150);
         body.setPromptText("Message...");
         
+    	composeView.getChildren().addAll(subjectField, body);
+        
         Button sendButton = new Button("Send");
     	composeView.getChildren().add(sendButton);
     	sendButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -111,15 +114,8 @@ public class ComposeView {
     			}
     		}
     	});
-    	
+    	    	
     	return composeScene;
 	}
 	
-	public static Scene getScene(String sender, String subject) {
-		return getScene(sender, subject, null);
-	}
-	
-	public static Scene getScene(String sender) {
-		return getScene(sender, null, null);
-	}
 }

@@ -28,6 +28,10 @@ public class Patient extends User {
 	 public void setPatientID(String inputtedPatientID) {
 		 this.patientID = inputtedPatientID;
 	 }
+	 
+	 public String getID() {
+		 return getPatientID();
+	 }
 
 	    
 }

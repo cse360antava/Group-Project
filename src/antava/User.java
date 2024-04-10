@@ -6,4 +6,8 @@ public class User {
 	public Account getAccount() {
 		return this.account;
 	}
+	
+	public String getID() {
+		return "override";
+	}
 }

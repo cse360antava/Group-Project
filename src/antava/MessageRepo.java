@@ -10,7 +10,8 @@ public class MessageRepo {
 		int i = 0;
 		File f = null;
 		while (f == null || f.isFile()) {
-			f = new File(message.receiver + "$" + i);
+			f = new File("messages/" + message.receiver + "$" + i);
+			i++;
 		}
 		try {
 			FileWriter fw = new FileWriter(f);
@@ -21,7 +22,7 @@ public class MessageRepo {
 	
 	public static ArrayList<Message> getTo(String receiver) {
 		ArrayList<Message> res = new ArrayList<Message>();
-		File folder = new File("src/messages");
+		File folder = new File("messages");
         File[] fileList = folder.listFiles();
         for (File file : fileList) {
         	if (file.isFile()) {
