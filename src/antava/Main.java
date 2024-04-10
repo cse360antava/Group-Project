@@ -73,6 +73,7 @@ public class Main extends Application {
                                 password = line.substring(line.indexOf(":") + 2);
                             } else if (line.startsWith("Patient ID:")) {
                                 patientID = line.substring(line.indexOf(":") + 2);
+                                patientDataRepository.editPatientData("patientID", patientID);
                             } else if (line.startsWith("Patient Name")) {
                                 String[] patientName = line.substring(line.indexOf(":") + 2).split(" ");
                                 patientDataRepository.editPatientData("firstName", patientName[0]);
@@ -90,8 +91,8 @@ public class Main extends Application {
                                 patientDataRepository.editPatientData("email", line.substring(line.indexOf(":") + 2));
                             } else if (line.startsWith("Insurance Company:")) {
                             	patientDataRepository.editPatientData("insuranceCompany", line.substring(line.indexOf(":") + 2));
-                            } else if (line.startsWith("Insurance Phone Number:")) {
-                            	patientDataRepository.editPatientData("insurancePhoneNumber", line.substring(line.indexOf(":") + 2));
+                            } else if (line.startsWith("Pharmacy:")) {
+                            	patientDataRepository.editPatientData("pharmacy", line.substring(line.indexOf(":") + 2));
                             } else if (line.startsWith("Previous Health Issues:")) {
                                 patientDataRepository.editPatientData("previousHealthIssues", line.substring(line.indexOf(":") + 2));
                             } else if (line.startsWith("Immunization History:")) {
@@ -145,8 +146,9 @@ public class Main extends Application {
                             // Create a patient and add it to the userList
                             Patient patient = new Patient(patientAccount);
                             patient.patientData = patientDataRepository;
+                            patient.setPatientID(patientID);
                             Main.userList.put(patientAccount.getUID(), patient);
-                            System.out.println("Patient account created: " + username + " " + password);
+                            System.out.println("Patient account loaded: " + username + " " + password);
                         }
                         br.close();
                     } catch (IOException e) {

@@ -187,7 +187,7 @@ public class NurseView {
             	patientRepo.editPatientData("allergies", allergies);
             	patientRepo.editPatientData("healthConcerns", healthConcerns);
             	  
-            	System.out.println("Information Added By Nurse");
+            	System.out.println("Patient Information Added By Nurse");
             }
             
         }); 

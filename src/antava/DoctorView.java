@@ -314,7 +314,7 @@ public class DoctorView
         		String phoneNumber = (String)patientRepo.getDataRepo().get("phoneNumber");
         		String email = (String)patientRepo.getDataRepo().get("email");
         		String insurance = (String)patientRepo.getDataRepo().get("insuranceCompany");
-        		String insuranceNumber = (String)patientRepo.getDataRepo().get("insurancePhoneNumber");
+        		String pharmacy = (String)patientRepo.getDataRepo().get("pharmacy");
         		String previousHealthIssues = (String)patientRepo.getDataRepo().get("previousHealthIssues");
         		String immunizationHistory = (String)patientRepo.getDataRepo().get("immunizationHistory");
         		String currentPrescriptions = (String)patientRepo.getDataRepo().get("currentPrescriptions");
@@ -354,7 +354,7 @@ public class DoctorView
                 	bufWriter.write("Patient Email: " + email + "\n");
                 	bufWriter.write("Patient Phone Number: " + phoneNumber + "\n");
                 	bufWriter.write("Insurance Company: " + insurance + "\n");
-                	bufWriter.write("Insurance Phone Number: " + insuranceNumber + "\n");
+                	bufWriter.write("Pharmacy: " + pharmacy + "\n");
                 	bufWriter.write("Previous Health Issues: " + previousHealthIssues + "\n");
                 	bufWriter.write("Immunization History: " + immunizationHistory + "\n");
                 	bufWriter.write("Current Prescriptions: " + currentPrescriptions + "\n\n");
