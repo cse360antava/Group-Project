@@ -86,7 +86,7 @@ public class PatientView {
         TextField patientEmailField = new TextField();
         TextField patientPhoneNumberField = new TextField();
         TextField insuranceField = new TextField();
-        TextField insuranceNumberField = new TextField();
+        TextField pharmacyField = new TextField();
         TextArea healthIssueArea = new TextArea();
         TextArea immuneHistoryArea = new TextArea();
         TextArea currentPrescriptionsArea = new TextArea();
@@ -102,7 +102,7 @@ public class PatientView {
         patientEmailField.setPromptText("Patient Email");
         patientPhoneNumberField.setPromptText("Patient Phone Number");
         insuranceField.setPromptText("Insurance Company");
-        insuranceNumberField.setPromptText("Insurance Phone Number");
+        pharmacyField.setPromptText("Pharmacy");
         healthIssueArea.setPromptText("Health Issues");
         immuneHistoryArea.setPromptText("Immunization History");
         currentPrescriptionsArea.setPromptText("Current Prescriptions");
@@ -117,7 +117,7 @@ public class PatientView {
         patientEmailField.setText((String) patient.patientData.getDataRepo().get("email"));
         patientPhoneNumberField.setText((String) patient.patientData.getDataRepo().get("phoneNumber"));
         insuranceField.setText((String) patient.patientData.getDataRepo().get("insuranceCompany"));
-        insuranceNumberField.setText((String) patient.patientData.getDataRepo().get("insurancePhoneNumber"));
+        pharmacyField.setText((String) patient.patientData.getDataRepo().get("pharmacy"));
         healthIssueArea.setText((String) patient.patientData.getDataRepo().get("previousHealthIssues"));
         immuneHistoryArea.setText((String) patient.patientData.getDataRepo().get("immunizationHistory"));
         currentPrescriptionsArea.setText((String) patient.patientData.getDataRepo().get("currentPrescriptions")); 
@@ -143,8 +143,8 @@ public class PatientView {
         ageField.setMaxWidth(150);
         insuranceField.setPrefWidth(150);
         insuranceField.setMaxWidth(150);
-        insuranceNumberField.setPrefWidth(150);
-        insuranceNumberField.setMaxWidth(150);
+        pharmacyField.setPrefWidth(150);
+        pharmacyField.setMaxWidth(150);
         patientEmailField.setPrefWidth(150);
         patientEmailField.setMaxWidth(150);
         patientPhoneNumberField.setPrefWidth(150);
@@ -173,7 +173,7 @@ public class PatientView {
         nameBox.getChildren().addAll(firstNameField, lastNameField, ageField);
         birthBox.getChildren().addAll(birthDayField, birthMonthField, birthYearField);
         patientContactBox.getChildren().addAll(patientEmailField, patientPhoneNumberField);
-        insuranceBox.getChildren().addAll(insuranceField, insuranceNumberField);
+        insuranceBox.getChildren().addAll(insuranceField, pharmacyField);
         patientInfoBox.getChildren().addAll(patientInfoLabel, nameBox, birthBox, patientContactBox, insuranceBox,
         									healthIssueArea, immuneHistoryArea, currentPrescriptionsArea);
         messagesBox.getChildren().addAll(messagesLabel, messagesArea, sendButton);
@@ -197,7 +197,7 @@ public class PatientView {
         	String patientEmail = patientEmailField.getText();
         	String patientNumber = patientPhoneNumberField.getText();
         	String insuranceName = insuranceField.getText();
-        	String insuranceNumber = insuranceNumberField.getText();
+        	String pharmacy = pharmacyField.getText();
             String healthIssues = healthIssueArea.getText();
             String immuneHistory = immuneHistoryArea.getText();
             String currentPrescriptions = currentPrescriptionsArea.getText();
@@ -211,7 +211,7 @@ public class PatientView {
             patient.patientData.editPatientData("email", patientEmail);
             patient.patientData.editPatientData("phoneNumber", patientNumber);
             patient.patientData.editPatientData("insuranceCompany", insuranceName);
-            patient.patientData.editPatientData("insurancePhoneNumber", insuranceNumber);
+            patient.patientData.editPatientData("insurancePhoneNumber", pharmacyField);
             patient.patientData.editPatientData("previousHealthIssues", healthIssues);
             patient.patientData.editPatientData("immunizationHistory", immuneHistory);
             patient.patientData.editPatientData("currentPrescriptions", currentPrescriptions);

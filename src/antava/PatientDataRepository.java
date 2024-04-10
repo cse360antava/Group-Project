@@ -19,7 +19,7 @@ public class PatientDataRepository {
 		data.put("phoneNumber", "");
 		data.put("email", "");
 		data.put("insuranceCompany", "");
-		data.put("insurancePhoneNumber", "");
+		data.put("pharmacy", "");
 		data.put("previousHealthIssues", "");
 		data.put("immunizationHistory", "");
 		data.put("currentPrescriptions", "");
