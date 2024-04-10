@@ -9,28 +9,39 @@ public class PatientDataRepository {
 	public PatientDataRepository() {
 		data = new HashMap<String, Object>();
 		
-		data.put("firstName", "Enter first name here");
-		data.put("lastName", "Enter last name here");
-		data.put("birthDay", "Enter birth day");
-		data.put("birthMonth", "Enter birth month");
-		data.put("birthYear", "Enter birth year");
-		data.put("age", "Enter age");
-		data.put("phoneNumber", "0-000-000-0000");
-		data.put("email", "Enter email here");
-		data.put("insuranceCompany", "Enter insurance company here");
-		data.put("insurancePhoneNumber", "Enter insurance phone number here");
-		data.put("previousHealthIssues", "Enter previous health issues here");
-		data.put("immunizationHistory", "Enter immunization history here");
-		data.put("currentPrescriptions", "Enter current prescriptions here");
+		data.put("patientID", "");
+		data.put("firstName", "");
+		data.put("lastName", "");
+		data.put("birthDay", "");
+		data.put("birthMonth", "");
+		data.put("birthYear", "");
+		data.put("age", "");
+		data.put("phoneNumber", "");
+		data.put("email", "");
+		data.put("insuranceCompany", "");
+		data.put("insurancePhoneNumber", "");
+		data.put("previousHealthIssues", "");
+		data.put("immunizationHistory", "");
+		data.put("currentPrescriptions", "");
+		data.put("bodyTemperature", "");
+		data.put("bloodPressure", "");
+		data.put("weight", "");
+		data.put("height", "");
+		data.put("allergies", "");
+		data.put("healthConcerns", "");
+		data.put("HEENNT", "");
+		data.put("gastro", "");
+		data.put("cardio", "");
+		data.put("resp", "");
+		data.put("skin", "");
+		data.put("muscle", "");
+		data.put("neuro", "");
+		data.put("psych", "");
+		data.put("finalAssessment", "");
+		data.put("summary", "");
+		data.put("prescriptions", "");
+		data.put("visitDate", "");
 		data.put("visitHistory", new ArrayList<Visit>());
-		data.put("bodyTemperature", "Enter body temperature");
-		data.put("bloodPressure", "Enter blood pressure");
-		data.put("weight", "Enter weight");
-		data.put("height", "Emter height");
-		data.put("allergies", "Enter allergies here");
-		data.put("healthConcerns", "Enter any health concerns here");
-		data.put("physicalExamSummaryList", new ArrayList<String>());
-		data.put("prescriptions", "Enter any prescriptions here");
 	}
 	
 	public boolean addPatientData(String key, Object value) {
