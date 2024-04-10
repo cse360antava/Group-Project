@@ -328,10 +328,6 @@ public class DoctorView
         		visitHistory.add(visit);
         		patientRepo.editPatientData("visitHistory", visitHistory);
         		
-        		/*for(Visit pVisit: (ArrayList<Visit>) patientRepo.getDataRepo().get("visitHistory")) {
-        			System.out.println(pVisit.getAllVisitInfo());
-        		} */
-        		
         		String curPrescriptions = (String) patientRepo.getDataRepo().get("currentPrescriptions");
         		
         		if (curPrescriptions.compareTo("") != 0 && prescriptions.compareTo("") != 0) {
@@ -350,6 +346,7 @@ public class DoctorView
         			FileWriter patientFile = new FileWriter("src/" + patientFileName);
                 	BufferedWriter bufWriter = new BufferedWriter(patientFile);
                 	bufWriter.write("Patient UserName: " + doctor.getPatient().getAccount().getUsername() + "\n");
+                	bufWriter.write("Patient Password: " + doctor.getPatient().getAccount().getPassword() + "\n");
                 	bufWriter.write("Patient ID: " + patientID + "\n");
                 	bufWriter.write("Patient Name: " + name + "\n");
                 	bufWriter.write("Patient Age: " + age + "\n");
