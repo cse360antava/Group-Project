@@ -21,14 +21,15 @@ public class MessageRepo {
 	}
 	
 	public static ArrayList<Message> getTo(String receiver) {
+		System.out.println(receiver);
 		ArrayList<Message> res = new ArrayList<Message>();
 		File folder = new File("messages");
         File[] fileList = folder.listFiles();
         for (File file : fileList) {
         	if (file.isFile()) {
-        		String n = file.getName().split("$")[0];
+        		String n = file.getName().split("\\$")[0];
         		System.out.println(n);
-        		if (n == receiver) {
+        		if (n.equals(receiver)) {
         			// good to go, read it
         			try {
         				String c = Files.readString(file.toPath());

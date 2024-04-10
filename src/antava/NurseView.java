@@ -144,7 +144,7 @@ public class NurseView {
         healthConcernsArea.setPrefWidth(500);
         healthConcernsArea.setMaxWidth(500);
         
-        HBox messages = new HBox(25);
+        VBox messages = new VBox(25);
         ArrayList<Message> ms = MessageRepo.getTo(nurse.getID());
         for (Message m : ms) {
         	messages.getChildren().add(MessageBar.getNode(m, nurse));

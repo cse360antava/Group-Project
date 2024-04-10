@@ -21,7 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 
 public class ComposeView {
-	public static Scene getScene(User user, String subject) {
+	public static Scene getScene(User user, String subject, String to) {
 		String sender = user.getID();
 		VBox composeView = new VBox();
     	composeView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -56,10 +56,16 @@ public class ComposeView {
         TextField patientField = new TextField();
         patientField.setPromptText("Patient ID");
         
-    	if (user.getAccount().getAccountType().equals("patient")) {
+    	if (user instanceof Patient) {
+    		if (to != null && to.equals("doctor")) {
+    			doctorButton.setSelected(true);
+    		}
 	        composeView.getChildren().addAll(toLabel, nurseButton, doctorButton);
 
     	} else {
+    		if (to != null) {
+    			patientField.setText(to);
+    		}
     		composeView.getChildren().addAll(toLabel, patientField);
     	}
     	
@@ -116,6 +122,10 @@ public class ComposeView {
     	});
     	    	
     	return composeScene;
+	}
+	
+	public static Scene getScene(User user, String subject) {
+		return getScene(user, subject);
 	}
 	
 }

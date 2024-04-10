@@ -14,7 +14,7 @@ public class MessageBar {
 		Button replyButton = new Button("Reply");
     	replyButton.setOnAction(new EventHandler<ActionEvent>() {
     		public void handle(ActionEvent event) {
-    			Main.setScene(ComposeView.getScene(user, "RE: " + m.subject));
+    			Main.setScene(ComposeView.getScene(user, "RE: " + m.subject, m.sender));
     		}
     	});
     	Button delButton = new Button("Delete");
