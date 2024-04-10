@@ -55,6 +55,8 @@ public class ComposeView {
         
         TextField patientField = new TextField();
         patientField.setPromptText("Patient ID");
+        patientField.setPrefWidth(500);
+        patientField.setMaxWidth(500);
         
     	if (user instanceof Patient) {
     		if (to != null && to.equals("doctor")) {
@@ -71,6 +73,8 @@ public class ComposeView {
     	
     	TextField subjectField = new TextField();
         subjectField.setPromptText("Subject");
+        subjectField.setPrefWidth(500);
+        subjectField.setMaxWidth(500);
         
         if (subject != null) {
         	subjectField.setText(subject);
