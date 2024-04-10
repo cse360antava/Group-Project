@@ -9,36 +9,41 @@ public class PatientDataRepository {
 	public PatientDataRepository() {
 		data = new HashMap<String, Object>();
 		
-		data.put("firstName", "Enter first name here");
-		data.put("middleName", "Enter middle name here");
-		data.put("lastName", "Enter last name here");
-		data.put("birthDay", 0);
-		data.put("birthMonth", 0);
-		data.put("birthYear", 0);
-		data.put("phoneNumber", "0-000-000-0000");
-		data.put("email", "Enter email here");
-		data.put("insuranceCompany", "Enter insurance company here");
-		data.put("insurancePhoneNumber", "Enter insurance phone number here");
-		data.put("previousMedicalHistory", "Enter previous medical history here");
+		data.put("patientID", "");
+		data.put("firstName", "");
+		data.put("lastName", "");
+		data.put("birthDay", "");
+		data.put("birthMonth", "");
+		data.put("birthYear", "");
+		data.put("age", "");
+		data.put("phoneNumber", "");
+		data.put("email", "");
+		data.put("insuranceCompany", "");
+		data.put("insurancePhoneNumber", "");
+		data.put("previousHealthIssues", "");
+		data.put("immunizationHistory", "");
+		data.put("currentPrescriptions", "");
+		data.put("bodyTemperature", "");
+		data.put("bloodPressure", "");
+		data.put("weight", "");
+		data.put("height", "");
+		data.put("allergies", "");
+		data.put("healthConcerns", "");
+		data.put("HEENNT", "");
+		data.put("gastro", "");
+		data.put("cardio", "");
+		data.put("resp", "");
+		data.put("skin", "");
+		data.put("muscle", "");
+		data.put("neuro", "");
+		data.put("psych", "");
+		data.put("finalAssessment", "");
+		data.put("summary", "");
+		data.put("prescriptions", "");
+		data.put("visitDate", "");
 		data.put("visitHistory", new ArrayList<Visit>());
-		data.put("bodyTemperature", 0);
-		data.put("pulseRate", 0);
-		data.put("respirationRate", 0);
-		data.put("bloodPressure", 0);
-		data.put("bloodOxygen", 0);
-		data.put("weight", 0);
-		data.put("bloodGlucoseLevel", 0);
-		data.put("allergies", "Enter allergies here");
-		data.put("healthConcerns", "Enter any health concerns here");
-		//TODO: implement physical exam reports in full, for now just a summary String is fine for prototype
-		data.put("physicalExamSummaryList", new ArrayList<String>());
-		data.put("prescriptions", "Enter any prescriptions here");
-		//unsure if I missed any fields, if so let me know or just add it -Chris
 	}
-	/*
-	 * Decided pretty arbitrarily to add boolean return type to these functions
-	 * so if you want to remove them for any reason go ahead -Chris
-	 * */
+	
 	public boolean addPatientData(String key, Object value) {
 		try {
 			data.put(key, value);
@@ -62,5 +67,9 @@ public class PatientDataRepository {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public HashMap<String, Object> getDataRepo() {
+		return this.data;
 	}
 }

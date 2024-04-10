@@ -3,4 +3,8 @@ package antava;
 public class User {
 	public Account account;
 	public MessageManager messager;
+	
+	public Account getAccount() {
+		return this.account;
+	}
 }

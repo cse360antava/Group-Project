@@ -12,15 +12,19 @@ public class Account {
 		this.accountType = accountType;
 		this.UID = ++UIDCount;
 	}
+	
 	public String getUsername() {
 		return username;
 	}
+	
 	public String getAccountType() {
 		return accountType;
 	}
+	
 	public boolean login(String username, String password) {
 		return (username.equals(this.username) && password.equals(this.password));
 	}
+	
 	public int getUID() {
 		return UID;
 	}
