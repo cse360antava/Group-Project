@@ -30,10 +30,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
     	s = primaryStage; // initialize the singleton
     	
+    	// NOTE: because of how UIDs are generated, they start at 1
     	// Add default nurse account
         Nurse defaultNurse = new Nurse(new Account("nurse", "nurse321", "nurse"));
         Main.userList.put(defaultNurse.getAccount().getUID(), defaultNurse);
-        System.out.println(defaultNurse.getAccount().getUID());
 
         // Add default doctor account
         Doctor defaultDoctor = new Doctor(new Account("doctor", "doctor321", "doctor"));
