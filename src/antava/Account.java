@@ -14,11 +14,15 @@ public class Account {
 	}
 	
 	public String getUsername() {
-		return username;
+		return this.username;
+	}
+	
+	public String getPassword() {
+		return this.password;
 	}
 	
 	public String getAccountType() {
-		return accountType;
+		return this.accountType;
 	}
 	
 	public boolean login(String username, String password) {
@@ -26,6 +30,6 @@ public class Account {
 	}
 	
 	public int getUID() {
-		return UID;
+		return this.UID;
 	}
 }
