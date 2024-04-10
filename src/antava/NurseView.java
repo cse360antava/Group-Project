@@ -170,14 +170,9 @@ public class NurseView {
         
         confirmButton.setOnAction(event -> {
         	String patientID = patientIDField.getText();
-        	//String patientName = patientNameField.getText();
-        	String age = ageField.getText(); 
         	String weight = weightField.getText();
         	String height = heightField.getText();
         	String temperature = temperatureField.getText();
-            //String healthIssues = healthIssueArea.getText();
-            //String immuneHistory = immuneHistoryArea.getText();
-            //String currentPrescriptions = currentPrescriptionsArea.getText();
             String bloodPressure = bloodPressureField.getText();
             String allergies = allergiesArea.getText();
             String healthConcerns = healthConcernsArea.getText();
@@ -185,7 +180,6 @@ public class NurseView {
             Patient curPatient = nurse.getPatient();
             if (curPatient != null) {
             	PatientDataRepository patientRepo = curPatient.patientData;
-            	//patientRepo.editPatientData("age", age);
             	patientRepo.editPatientData("weight", weight);
             	patientRepo.editPatientData("height", height);
             	patientRepo.editPatientData("bodyTemperature", temperature);
@@ -193,13 +187,12 @@ public class NurseView {
             	patientRepo.editPatientData("allergies", allergies);
             	patientRepo.editPatientData("healthConcerns", healthConcerns);
             	  
-            	//System.out.println("Age: " + (String) patientRepo.getDataRepo().get("age"));
-            	System.out.println("Weight: " + (String) patientRepo.getDataRepo().get("weight"));
+            	/*System.out.println("Weight: " + (String) patientRepo.getDataRepo().get("weight"));
             	System.out.println("Height: " + (String) patientRepo.getDataRepo().get("height"));
             	System.out.println("Temp: " + (String) patientRepo.getDataRepo().get("bodyTemperature"));
             	System.out.println("Pressure: " + (String) patientRepo.getDataRepo().get("bloodPressure"));
             	System.out.println("Allergies: " + (String) patientRepo.getDataRepo().get("allergies"));
-            	System.out.println("Health Concerns: " + (String) patientRepo.getDataRepo().get("healthConcerns"));
+            	System.out.println("Health Concerns: " + (String) patientRepo.getDataRepo().get("healthConcerns")); */
             }
             
         }); 
