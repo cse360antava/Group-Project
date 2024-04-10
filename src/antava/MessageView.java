@@ -31,7 +31,7 @@ public class MessageView {
     	ImageView newLogo = new ImageView(Main.logo.getImage());
     	newLogo.setFitWidth(250); 
     	newLogo.setFitHeight(250);
-    	Text title = new Text("Compose Message");
+    	Text title = new Text("View Message");
     	title.setStyle("-fx-font-size: 22; -fx-font-weight: bold;");
     	title.setStyle("-fx-fill: rgba(170, 103, 29, 0.8);");
     	messageView.getChildren().add(newLogo);
