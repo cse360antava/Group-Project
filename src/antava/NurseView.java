@@ -1,5 +1,7 @@
 package antava;
 
+import java.util.ArrayList;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -59,7 +61,6 @@ public class NurseView {
         GridPane.setHalignment(newLogo, javafx.geometry.HPos.CENTER);
         
         Button logoutButton = new Button("Log Out");
-        Button replyButton = new Button("Reply");
         Button confirmButton = new Button("Confirm");
         
         GridPane.setHalignment(logoutButton, javafx.geometry.HPos.RIGHT);
@@ -97,8 +98,6 @@ public class NurseView {
         TextField bloodPressureField = new TextField();
         TextArea allergiesArea = new TextArea();
         TextArea healthConcernsArea = new TextArea();
-        TextArea messagesArea = new TextArea();
-        TextArea composeMessageArea = new TextArea();
         
         patientIDField.setPromptText("Patient ID");
         patientNameField.setPromptText("Patient Name");
@@ -112,8 +111,6 @@ public class NurseView {
         bloodPressureField.setPromptText("Blood Pressure");
         allergiesArea.setPromptText("Allergies");
         healthConcernsArea.setPromptText("Health Concerns");
-        messagesArea.setPromptText("View Your Messages");
-        composeMessageArea.setPromptText("Compose A Message");
         
         // Check Age
         ageField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -146,19 +143,25 @@ public class NurseView {
         allergiesArea.setMaxHeight(100);
         healthConcernsArea.setPrefWidth(500);
         healthConcernsArea.setMaxWidth(500);
-        messagesArea.setPrefWidth(750);
-        messagesArea.setMaxWidth(750);
-        messagesArea.setPrefHeight(250);
-        messagesArea.setMaxHeight(250);
-        composeMessageArea.setPrefWidth(500);
-        composeMessageArea.setMaxWidth(500);
-        composeMessageArea.setPrefHeight(150);
-        composeMessageArea.setMaxHeight(150);
+        
+        HBox messages = new HBox(25);
+        ArrayList<Message> ms = MessageRepo.getTo(nurse.getID());
+        for (Message m : ms) {
+        	messages.getChildren().add(MessageBar.getNode(m, nurse));
+        }
+        if (ms.isEmpty()) {
+        	messages.getChildren().add(new Text("No messages."));
+        }
+        
+        Button composeButton = new Button("Compose Message");
+        composeButton.setOnAction(event -> {
+        	Main.setScene(ComposeView.getScene(nurse, null));
+        });
         
         patientBox.getChildren().addAll(patientLabel, patientIDField, patientNameField, ageField, healthIssueArea, immuneHistoryArea, currentPrescriptionsArea);
         vitalsBox.getChildren().addAll(vitalsLabel, weightField, heightField, temperatureField, bloodPressureField);
         allergiesBox.getChildren().addAll(allergiesLabel, allergiesArea);
-        messagesBox.getChildren().addAll(messagesLabel, messagesArea, composeMessageArea, replyButton);
+        messagesBox.getChildren().addAll(messagesLabel, messages, composeButton);
         healthConcernsBox.getChildren().addAll(healthConcernsLabel, healthConcernsArea);
         
         nurseView.add(newLogo, 0, 1, 2, 1);

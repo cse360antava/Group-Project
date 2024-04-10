@@ -90,7 +90,6 @@ public class PatientView {
         TextArea healthIssueArea = new TextArea();
         TextArea immuneHistoryArea = new TextArea();
         TextArea currentPrescriptionsArea = new TextArea();
-        TextArea messagesArea = new TextArea();
         TextArea visitHistoryArea = new TextArea();
 
         firstNameField.setPromptText("First Name");
@@ -107,7 +106,6 @@ public class PatientView {
         immuneHistoryArea.setPromptText("Immunization History");
         currentPrescriptionsArea.setPromptText("Current Prescriptions");
         visitHistoryArea.setPromptText("Visit History");
-        messagesArea.setPromptText("View Your Messages");
         
         firstNameField.setText((String) patient.patientData.getDataRepo().get("firstName"));
         lastNameField.setText((String) patient.patientData.getDataRepo().get("lastName"));
@@ -162,10 +160,15 @@ public class PatientView {
         visitHistoryArea.setMaxWidth(750);
         visitHistoryArea.setPrefHeight(250);
         visitHistoryArea.setMaxHeight(250);
-        messagesArea.setPrefWidth(750);
-        messagesArea.setMaxWidth(750);
-        messagesArea.setPrefHeight(250);
-        messagesArea.setMaxHeight(250);
+        
+        HBox messages = new HBox(25);
+        ArrayList<Message> ms = MessageRepo.getTo(patient.getID());
+        for (Message m : ms) {
+        	messages.getChildren().add(MessageBar.getNode(m, patient));
+        }
+        if (ms.isEmpty()) {
+        	messages.getChildren().add(new Text("No messages."));
+        }
         
         HBox nameBox = new HBox(25);
         HBox birthBox = new HBox(25);
@@ -177,7 +180,7 @@ public class PatientView {
         insuranceBox.getChildren().addAll(insuranceField, pharmacyField);
         patientInfoBox.getChildren().addAll(patientInfoLabel, nameBox, birthBox, patientContactBox, insuranceBox,
         									healthIssueArea, immuneHistoryArea, currentPrescriptionsArea);
-        messagesBox.getChildren().addAll(messagesLabel, messagesArea, composeButton);
+        messagesBox.getChildren().addAll(messagesLabel, messages, composeButton);
         visitHistoryBox.getChildren().addAll(visitHistoryLabel, visitHistoryArea);
         
         patientView.add(newLogo, 0, 1, 2, 1);
