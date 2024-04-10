@@ -7,6 +7,8 @@ public class Message {
 	public String message;
 	public String subject;
 	
+	public String path; // optional
+	
 	public Message(String sender, String receiver, String subject, String message) {
 		this.sender = sender;
 		this.receiver = receiver;

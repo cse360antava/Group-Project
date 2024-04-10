@@ -31,11 +31,20 @@ public class MessageRepo {
         			// good to go, read it
         			try {
         				String c = Files.readString(file.toPath());
-        				res.add(Message.parseMessage(c));
+        				Message m = Message.parseMessage(c);
+        				m.path = file.getPath();
+        				res.add(m);
         			} catch (Exception e) {}
         		}
         	}
         }
         return res;
+	}
+	
+	public static void delete(Message m) {
+		try {
+			File f = new File(m.path);
+			f.delete();
+		} catch (Exception e) {}
 	}
 }
