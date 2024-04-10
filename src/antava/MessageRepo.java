@@ -10,7 +10,7 @@ public class MessageRepo {
 		int i = 0;
 		File f = null;
 		while (f == null || f.isFile()) {
-			f = new File("messages/" + message.receiver + "$" + i);
+			f = new File("src/messages/" + message.receiver + "$" + i);
 			i++;
 		}
 		try {
@@ -21,14 +21,18 @@ public class MessageRepo {
 	}
 	
 	public static ArrayList<Message> getTo(String receiver) {
-		System.out.println(receiver);
 		ArrayList<Message> res = new ArrayList<Message>();
-		File folder = new File("messages");
+		File folder = new File("src/messages");
         File[] fileList = folder.listFiles();
+        
+        if (fileList == null) {
+        	fileList = new File[0];
+        }
+        
         for (File file : fileList) {
         	if (file.isFile()) {
         		String n = file.getName().split("\\$")[0];
-        		System.out.println(n);
+        		//System.out.println(n);
         		if (n.equals(receiver)) {
         			// good to go, read it
         			try {

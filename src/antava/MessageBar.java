@@ -9,8 +9,8 @@ import javafx.scene.text.Text;
 
 public class MessageBar {
 	public static Node getNode(Message m, User user) {
-		HBox hs = new HBox();
-		Text t = new Text("From: " + m.sender + "\n" + m.subject);
+		HBox hs = new HBox(10);
+		Text t = new Text("From: " + m.sender + "\n" + "Subject: " + m.subject + "\n");
 		Button replyButton = new Button("View");
     	replyButton.setOnAction(new EventHandler<ActionEvent>() {
     		public void handle(ActionEvent event) {

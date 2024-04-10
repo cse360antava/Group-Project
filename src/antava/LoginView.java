@@ -24,7 +24,7 @@ public class LoginView {
 	
 	public static Scene getScene() {
 		// LOGIN VIEW
-    	VBox loginView = new VBox();
+    	VBox loginView = new VBox(10);
     	loginView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	loginView.setAlignment(Pos.CENTER);
     	

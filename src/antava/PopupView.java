@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 public class PopupView {
     
     public static Scene getScene(String message, Scene back, String backMessage) { 
-        VBox messageView = new VBox();
+        VBox messageView = new VBox(10);
         messageView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
         messageView.setAlignment(Pos.CENTER);
         

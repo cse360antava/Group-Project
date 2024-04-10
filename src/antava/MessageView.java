@@ -19,12 +19,12 @@ import javafx.stage.Screen;
 
 public class MessageView {
 	public static Scene getScene(User user, Message m) {
-		VBox messageView = new VBox();
+		VBox messageView = new VBox(15);
     	messageView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	messageView.setAlignment(Pos.CENTER);
     	
-    	double screenWidth = Screen.getPrimary().getVisualBounds().getWidth() - 250;
-        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight() - 250;
+    	double screenWidth = Screen.getPrimary().getVisualBounds().getWidth() - 100;
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight() - 100;
     	
     	Scene messageScene = new Scene(messageView, screenWidth, screenHeight);
     	messageScene.setFill(Color.rgb(201, 241, 253));
@@ -44,6 +44,7 @@ public class MessageView {
     			Main.setScene(ComposeView.getScene(user, "RE: " + m.subject, m.sender));
     		}
     	});
+    	
     	Button delButton = new Button("Delete");
     	delButton.setOnAction(new EventHandler<ActionEvent>() {
     		public void handle(ActionEvent event) {
@@ -71,7 +72,10 @@ public class MessageView {
     		}
     	});
     	
-    	messageView.getChildren().addAll(t, replyButton, delButton, backButton);
+    	HBox messageButtons = new HBox(25);
+    	messageButtons.getChildren().addAll(replyButton, delButton, backButton);
+    	messageButtons.setAlignment(Pos.CENTER);
+    	messageView.getChildren().addAll(t, messageButtons);
     	
 		return messageScene;
 	}

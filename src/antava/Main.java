@@ -39,7 +39,7 @@ public class Main extends Application {
         Doctor defaultDoctor = new Doctor(new Account("doctor", "doctor321", "doctor"));
         Main.userList.put(defaultDoctor.getAccount().getUID(), defaultDoctor);
         
-     // Read Files and loads in patient accounts and information
+        // Read Files and loads in patient accounts and information
     	readPatientInfoFiles();
         
     	logo = new ImageView(new Image("file:src/antava/logo.jpg"));

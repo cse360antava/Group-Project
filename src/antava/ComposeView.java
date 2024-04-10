@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -23,7 +24,9 @@ import javafx.stage.Screen;
 public class ComposeView {
 	public static Scene getScene(User user, String subject, String to) {
 		String sender = user.getID();
-		VBox composeView = new VBox();
+		String senderName = user.getAccount().getUsername();
+		//System.out.println(senderName);
+		VBox composeView = new VBox(10);
     	composeView.setBackground(new Background(new BackgroundFill(Color.rgb(201, 241, 253), CornerRadii.EMPTY, Insets.EMPTY)));
     	composeView.setAlignment(Pos.CENTER);
     	
@@ -41,7 +44,7 @@ public class ComposeView {
     	composeView.getChildren().add(newLogo);
     	composeView.getChildren().add(title);
     	
-    	Text fromText = new Text("From: " + sender);
+    	Text fromText = new Text("From: " + senderName);
     	composeView.getChildren().add(fromText);
     	
     	Label toLabel = new Label("To:");
@@ -88,9 +91,11 @@ public class ComposeView {
         body.setPromptText("Message...");
         
     	composeView.getChildren().addAll(subjectField, body);
-        
+    	
+        HBox messageButtons = new HBox(25);
+        messageButtons.setAlignment(Pos.CENTER);
         Button sendButton = new Button("Send");
-    	composeView.getChildren().add(sendButton);
+        messageButtons.getChildren().add(sendButton);
     	sendButton.setOnAction(new EventHandler<ActionEvent>() {
     		public void handle(ActionEvent event) {
     			String to;
@@ -112,7 +117,8 @@ public class ComposeView {
     	});
         
         Button backButton = new Button("Cancel");
-    	composeView.getChildren().add(backButton);
+        messageButtons.getChildren().add(backButton);
+        composeView.getChildren().add(messageButtons);
     	backButton.setOnAction(new EventHandler<ActionEvent>() {
     		public void handle(ActionEvent event) {
     			if (user instanceof Patient) {
@@ -129,7 +135,7 @@ public class ComposeView {
 	}
 	
 	public static Scene getScene(User user, String subject) {
-		return getScene(user, subject);
+		return getScene(user, subject, null);
 	}
 	
 }

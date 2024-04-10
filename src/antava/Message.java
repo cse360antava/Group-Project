@@ -5,8 +5,7 @@ public class Message {
 	public String sender;
 	public String receiver;
 	public String message;
-	public String subject;
-	
+	public String subject;	
 	public String path; // optional
 	
 	public Message(String sender, String receiver, String subject, String message) {

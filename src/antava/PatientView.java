@@ -219,7 +219,7 @@ public class PatientView {
             patient.patientData.editPatientData("email", patientEmail);
             patient.patientData.editPatientData("phoneNumber", patientNumber);
             patient.patientData.editPatientData("insuranceCompany", insuranceName);
-            patient.patientData.editPatientData("insurancePhoneNumber", pharmacyField);
+            patient.patientData.editPatientData("pharmacy", pharmacy);
             patient.patientData.editPatientData("previousHealthIssues", healthIssues);
             patient.patientData.editPatientData("immunizationHistory", immuneHistory);
             patient.patientData.editPatientData("currentPrescriptions", currentPrescriptions);
