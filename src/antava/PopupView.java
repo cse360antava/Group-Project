@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.scene.image.ImageView; 
 
-public class MessageView {
+public class PopupView {
     
     public static Scene getScene(String message, Scene back, String backMessage) { 
         VBox messageView = new VBox();
