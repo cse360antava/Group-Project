@@ -30,7 +30,7 @@ public class MessageRepo {
         }
         
         for (File file : fileList) {
-        	if (file.isFile()) {
+        	if (file.isFile() && file.getName().contains("$")) {
         		String n = file.getName().split("\\$")[0];
         		//System.out.println(n);
         		if (n.equals(receiver)) {
