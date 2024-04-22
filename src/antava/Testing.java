@@ -8,6 +8,12 @@ import org.junit.Test;
 
 public class Testing {
 	
+	// these test cases are modified slightly from phase ii
+	// to match the updated program architecture, and to address
+	// the most error-prone portions of code more directly;
+	// some functionality is too deeply tied to JavaFX
+	// to adequately test here, so live testing is necessary
+	
 	@Test
 	public void AccountSetup() {
 		UserList.init();
@@ -18,8 +24,6 @@ public class Testing {
 	@Test
 	public void LoginSuccess() {
 		UserList.init();
-		
-		System.out.println(UserList.userList.size());
 		
 		// attempts to log in as the Nurse
 		// should be successful
@@ -150,6 +154,43 @@ public class Testing {
     		}
     	}
     	assertTrue(alreadyExistingUsername);
+	}
+	
+	@Test
+	public void SendAndReceive() {
+		MessageRepo.compose(new Message("testUser1", "testUser2", "test", "hello"));
+		assertTrue(MessageRepo.getTo("testUser2").size() > 0);
+	}
+	
+	@Test
+	public void SendAndDelete() {
+		MessageRepo.compose(new Message("testUser1", "testUser3", "test", "hello"));
+		Message m = MessageRepo.getTo("testUser3").get(0);
+		MessageRepo.delete(m);
+		assertEquals(MessageRepo.getTo("testUser3").size(), 0);
+	}
+	
+	@Test
+	public void SendMulti() {
+		MessageRepo.compose(new Message("testUser1", "testUser4", "test", "hello"));
+		MessageRepo.compose(new Message("testUser1", "testUser4", "test2", "hello"));
+		MessageRepo.compose(new Message("testUser1", "testUser4", "test3", "hello"));
+		assertTrue(MessageRepo.getTo("testUser4").size() >= 3);
+	}
+	
+	@Test
+	public void ReceiveMulti() {
+		MessageRepo.compose(new Message("testUser5", "testUser8", "test", "hello"));
+		MessageRepo.compose(new Message("testUser6", "testUser8", "test2", "hello"));
+		MessageRepo.compose(new Message("testUser7", "testUser8", "test3", "hello"));
+		assertTrue(MessageRepo.getTo("testUser8").size() >= 3);
+	}
+	
+	@Test
+	public void EditPatient() {
+		PatientDataRepository repo = new PatientDataRepository();
+		repo.addPatientData("email", "bob@email.com");
+		assertTrue(repo.getDataRepo().get("email").equals("bob@email.com"));
 	}
 
 }
